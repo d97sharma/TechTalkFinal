@@ -1,0 +1,30 @@
+.files-table {
+    font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+    text-align: center;
+  }
+  
+  .files-table td, tr {
+    border: 1px solid #ddd;
+    padding: 8px;
+  }
+  
+  .files-table tr:nth-child(even){background-color: whitesmoke;
+color:black;}
+  
+.files-table tr:nth-child(odd){background-color: white;
+    color:black;}
+
+
+  .files-table tr:hover {background-color:purple;
+color: white;}
+  
+  .files-table th {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: center;
+    background-color: black;
+    // background-color:    #4CAF50;
+    color: white;
+  }

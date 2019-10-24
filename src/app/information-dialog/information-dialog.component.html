@@ -1,0 +1,16 @@
+<h2>Information Extracted</h2>
+
+<table class="files-table">
+  <tr>
+      <th>S.No.</th>
+      <th>Data Field</th> 
+      <th>Value</th>
+      
+      
+  </tr>
+  <tr *ngFor="let data of infoExtracted | keyvalue;let i=index">
+      <td>{{i+1}}</td>
+      <td >{{ data.key }}</td>
+      <td >{{ data.value }}</td>
+  </tr>
+</table>

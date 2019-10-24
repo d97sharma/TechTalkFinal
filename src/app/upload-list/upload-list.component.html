@@ -1,0 +1,37 @@
+<div>
+<h2>List of the Files Uploaded</h2>
+</div>
+<br>
+
+<div class="table-container">
+<table class="files-table" *ngIf="fileList">
+  <tr>
+      <th>S.No.</th>
+      <th>Name of the Files</th> 
+      <th>Options Available</th>
+      
+      
+  </tr>
+  <tr *ngFor="let fileName of fileList;let i=index">
+      <td>{{i+1}}</td>
+      <td >{{ fileName }}</td>
+      <td >
+            <button class="btn2" (click)="convertToJpeg()" >Extract Info</button>  &nbsp;&nbsp;
+            <button class="btn2">
+              <a routerLink="/marked-images" routerLinkActive="active">Show Marked Images</a>
+            </button>
+
+            <button class="delete-file" (click)="deleteAttachment(i)">
+            <mat-icon class="delete-file" style="font-size: 32px !important">delete</mat-icon> </button> &nbsp;&nbsp;
+            
+      </td>
+  </tr>
+</table>
+
+</div>
+
+<br>
+<div>
+<button class="btn" (click)="openDialog()">Extract All</button>
+</div>
+<p>{{fileNameService.fileType}}</p>

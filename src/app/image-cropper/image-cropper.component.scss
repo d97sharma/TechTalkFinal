@@ -1,0 +1,176 @@
+.img-container {
+    width: 600px;
+    height: 700px;
+    float: left;
+}
+
+.img-preview {
+    float: left;
+    margin-left: 10px;
+}
+
+
+.addButton {
+    background-color: #4CAF50; /* Green */
+      border: none;
+      color: white;
+      padding: 10px 15px;
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+      font-size: 16px;
+      margin-top: 5px;
+  }
+
+  .btn {
+    background-color:oldlace;
+    border: 0.5px black;
+    color: black;
+    padding: 6px 12px;
+    text-align: center;
+    text-decoration: none;
+    display: block;
+    font-size: 18px;
+    -webkit-transition-duration: 0.4s; /* Safari */
+    transition-duration: 0.4s;
+    cursor: pointer;
+    border-radius: 8px;
+    margin: auto;
+  }
+
+  .btn:hover
+{
+background-image:none;
+background-color:lightseagreen;
+color: white;
+}
+
+  .btn2 {
+    background-color: #007BFF; /* Green  #4CAF50 */
+    border: none;
+    color: white;
+    padding: 6px 12px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 18px;
+    -webkit-transition-duration: 0.4s; /* Safari */
+    transition-duration: 0.4s;
+    cursor: pointer;
+    border-radius: 8px;
+  }
+
+.column {
+    
+  float: left;
+  padding: 10px;
+  height: 100%; /* Should be removed. Only for demonstration */
+}
+
+.left {
+  width: 55%;
+  
+}
+
+.right {
+    
+  width: 45%;
+  background-color: #343a40;
+  color: white;
+  overflow: hidden;
+}
+
+/* Clear floats after the columns */
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+.material-icons:hover {
+    color: red;
+    
+  }
+
+
+/// TEST CODE
+
+.btn2:hover
+{
+background-image:none;
+background-color:lightseagreen;
+color: white;
+}
+
+ 
+
+.delete-file {
+    border: 0.5px black;
+    color: black;
+    padding: 6px 12px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 18px;
+    -webkit-transition-duration: 0.4s; /* Safari */
+    transition-duration: 0.4s;
+    cursor: pointer;
+    border-radius: 8px;
+    margin: auto;
+  }
+  
+  .delete-file:hover
+  {
+  background-image:none;
+  background-color:red;
+  }
+  //---------------------------------------------------
+  
+  
+  .files-table .delete-file {
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    display: inline-block;
+    padding: 1px;
+
+  }
+  .files-table .delete-file img{
+    width:20px;
+  }
+  
+  
+  //---------------------------------------------------
+  
+    .files-table {
+      font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+      border-collapse: collapse;
+      width: 100%;
+      text-align: center;
+    //   margin: 10px;
+
+    }
+    
+    .files-table tr {
+      border: 1px solid #ddd;
+      padding: 8px;
+    }
+    
+    .files-table tr:nth-child(even){background-color: whitesmoke;
+        color:black;}
+          
+        .files-table tr:nth-child(odd){background-color: white;
+            color:black;}
+        
+        
+        //   .files-table tr:hover {background-color:lightblue;
+        // color: white;}
+    
+    .files-table th {
+      padding-top: 12px;
+      padding-bottom: 12px;
+      text-align: center;
+      background-color: black;
+      // background-color:    #4CAF50;
+      color: white;
+    }
