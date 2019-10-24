@@ -5,6 +5,7 @@ import { HttpClient } from '@angular/common/http';
 import { ImageDetails } from "./image-details"
 import { TemplatePreviewComponent } from '../template-preview/template-preview.component';
 import { TemplateUrlService } from '../template-url.service';
+import { NotificationService } from '../notification.service';
 
 @Component({
     selector: 'app-image-cropper',
@@ -36,7 +37,8 @@ export class ImageCropperComponent implements OnInit {
     public constructor(
               private http : HttpClient,
               private dialog:MatDialog,
-              private templateUrl:TemplateUrlService
+              private templateUrl:TemplateUrlService,
+              private notification:NotificationService
     ) {
         // this.imageDestination = "";
         // this.imageSource = "assets/angular.png";
@@ -101,6 +103,7 @@ export class ImageCropperComponent implements OnInit {
         //replace with "images"
         this.http.post<any>("http://localhost:2136/api/upload/images", this.formData).subscribe(
         (data: any) => { 
+            this.notification.showSuccess("Templates Uploaded Successfully","");
       }
     ); 
          
