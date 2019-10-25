@@ -10,6 +10,12 @@
 
     <div class="column right">
         <br>
+        <!-- <div>
+
+            <button (click)="decrementPage()">Prev Page</button>
+            <button (click)="incrementPage()">Next Page</button>
+
+        </div> -->
         <div>
             <mat-label>Template Name: </mat-label> &nbsp;
             <input placeholder="Enter Template Name" [(ngModel)] = "imageDetails.ImageName">
@@ -45,7 +51,7 @@
         </div> -->
 <br>
         <div *ngIf="uploadButton">
-            <button class="btn2" (click)="uploadTemplates()">Upload All</button>
+            <button class="btn2" (click)="uploadTemplates()">Save all</button>
         </div>
     </div>
 </div> 

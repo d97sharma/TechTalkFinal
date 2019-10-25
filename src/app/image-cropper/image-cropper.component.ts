@@ -6,6 +6,8 @@ import { ImageDetails } from "./image-details"
 import { TemplatePreviewComponent } from '../template-preview/template-preview.component';
 import { TemplateUrlService } from '../template-url.service';
 import { NotificationService } from '../notification.service';
+import { ServeB64imagesService } from '../serve-b64images.service';
+import { DomSanitizer } from '@angular/platform-browser';
 
 @Component({
     selector: 'app-image-cropper',
@@ -17,7 +19,10 @@ export class ImageCropperComponent implements OnInit {
     @ViewChild("image", { static: false })
     public imageElement: ElementRef;
     public croppedImageName:string="hi";
-    public imageSource: string;
+    // public imageSource: string;
+    public imageSource: any;
+
+    public pageNumber:number;
 
     public imgWidth: number;
     public imgHeight: number;
@@ -38,7 +43,9 @@ export class ImageCropperComponent implements OnInit {
               private http : HttpClient,
               private dialog:MatDialog,
               private templateUrl:TemplateUrlService,
-              private notification:NotificationService
+              private notification:NotificationService,
+              private serveImages:ServeB64imagesService,
+              private _sanitizer: DomSanitizer
     ) {
         // this.imageDestination = "";
         // this.imageSource = "assets/angular.png";
@@ -47,12 +54,17 @@ export class ImageCropperComponent implements OnInit {
     }
 
     ngOnInit() { 
+
+        this.pageNumber = 0;
         this.imageDestination = "";
-        this.imageSource = "assets/angular.png";
+        this.imageSource = this._sanitizer.bypassSecurityTrustResourceUrl('data:image/jpg;base64,' 
+        + this.serveImages.markedb64Images[this.pageNumber]);
+
         this.imageDetails = {ImageName : "", ImageDataURL : "", ImgH:0, ImgW:0}
     }
 
     public ngAfterViewInit() {
+
         this.cropper = new Cropper(this.imageElement.nativeElement, {
             zoomable: false,
             scalable: false,
@@ -67,6 +79,7 @@ export class ImageCropperComponent implements OnInit {
                 // console.log(this.imageDestination);
             }
         });
+        
     }
 
     public convToJPG(imageDetails:ImageDetails)
@@ -140,6 +153,22 @@ export class ImageCropperComponent implements OnInit {
             height: '400px',
             width: '1000px',
           });
+  }
+  incrementPage(){
+    this.pageNumber +=1 ;
+
+    this.imageSource = this._sanitizer.bypassSecurityTrustResourceUrl('data:image/jpg;base64,' 
+        + this.serveImages.markedb64Images[this.pageNumber]);
+  }
+  decrementPage(){
+    if (this.pageNumber == 0){
+      return
+    }
+    this.pageNumber -=1;
+
+    this.imageSource = this._sanitizer.bypassSecurityTrustResourceUrl('data:image/jpg;base64,' 
+        + this.serveImages.markedb64Images[this.pageNumber]);
+
   }
 }
 

@@ -23,7 +23,11 @@ export class InvoiceTypeComponent implements OnInit {
 
     data:Array<Object> = [
       {id: 0, name: "AmeriHome"},
-      {id: 1, name: "BoA"}
+      {id: 1, name: "BoA"},
+      {id: 1, name: "Caliber"},
+      {id: 1, name: "Chase"},
+      {id: 1, name: "First National Bank"},
+      {id: 1, name: "Wells Fargo"}
     ];
    
 /*

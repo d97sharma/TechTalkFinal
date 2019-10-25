@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { NotificationService } from 'src/app/notification.service';
 import { FileNameService } from 'src/app/file-name.service';
+import { ServeB64imagesService } from '../serve-b64images.service';
 
 @Component({
   selector: 'app-training-uploader',
@@ -9,6 +10,8 @@ import { FileNameService } from 'src/app/file-name.service';
   styleUrls: ['./training-uploader.component.scss'],
 })
 export class TrainingUploaderComponent implements OnInit {
+
+  // markedImages: any = null;
 
   progress: number;
   files: any[] = [];
@@ -21,7 +24,8 @@ export class TrainingUploaderComponent implements OnInit {
 
   constructor(private http: HttpClient,
     private notifyService : NotificationService,
-    private fileNameService: FileNameService
+    private fileNameService: FileNameService,
+    private serveImages: ServeB64imagesService
     ) { }
 
     ngOnInit() {
@@ -48,8 +52,11 @@ export class TrainingUploaderComponent implements OnInit {
           () => {
             this.notifyService.showSuccess("File uploaded successfully", "Notification");
             // change the IP when in office
-            this.http.post("http://172.23.179.252:5000/api/ConvertPDFs",this.myJson).subscribe(
-              (data: any) => {this.notifyService.showSuccess("File converted successfully", "Notification");}
+            this.http.post("http://172.23.179.252:5000/api/GetTrainingImgs",this.myJson).subscribe(
+              (data: any) => {
+                this.serveImages.markedb64Images = data["Base64Imgs"];
+                this.notifyService.showSuccess("File converted successfully", "Notification");
+              }
             )
           });
         
