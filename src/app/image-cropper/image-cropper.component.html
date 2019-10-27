@@ -1,21 +1,23 @@
-<!-- <p>image-cropper works!</p> -->
+
 
 <!-- NAVANSHU CODE -->
 <div class="row"> 
     <div class="column left">
         <div class="img-container">
+             <h3><b>Step 2. Crop the information zones</b></h3>
+             <div>
+
+                <button (click)="decrementPage()">Prev Page</button>
+                {{this.pageNumber}}
+                <button (click)="incrementPage()">Next Page</button>
+        
+             </div>
              <img #image [src]="imageSource" > 
         </div>
     </div>
 
     <div class="column right">
         <br>
-        <!-- <div>
-
-            <button (click)="decrementPage()">Prev Page</button>
-            <button (click)="incrementPage()">Next Page</button>
-
-        </div> -->
         <div>
             <mat-label>Template Name: </mat-label> &nbsp;
             <input placeholder="Enter Template Name" [(ngModel)] = "imageDetails.ImageName">
@@ -27,64 +29,26 @@
         </div>
         <br>
         <div>
-        <table class="files-table" *ngFor = "let image of imageDetailsList; let i = index">
-                <tr>
+        <table class="files-table" *ngIf = "imageDetailsList.length > 0">
+                <tr>   
+                    <td>Zone Name</td>
+                    <td>Actions</td>
+
+                </tr>
+                <tr *ngFor = "let image of imageDetailsList; let i = index">
                     <td>{{image.ImageName}}</td>
-                    <td><button class="btn" (click)="imagePreview(image)">Preview Template</button></td>
-                    <td><button class="delete-file" (click)="removeTemplate(i)"><mat-icon class="delete-file" style="font-size: 32px !important">delete</mat-icon> </button></td>
+                    <td>
+                        <button class="btn" (click)="imagePreview(image)">Preview Template</button>
+                        <button class="delete-file" (click)="removeTemplate(i)"><mat-icon class="delete-file" style="font-size: 32px !important">delete</mat-icon> </button>
+                    </td>
                 </tr>
         </table>
         </div>
-        <!-- <div *ngFor = "let image of imageDetailsList; let i = index">
-            <div>
-                <mat-label>Template Name</mat-label>
-                {{template.templateName}}
-                <br/>
-                <a [href] = "template.TemplateImgURL" target="_blank">Click to preview template</a>
-            
-            </div>
-            <div>
-                <button (click)="removeTemplate(i)">
-                    <mat-icon>delete</mat-icon>
-                </button>
-            </div>
-        </div> -->
+
 <br>
-        <div *ngIf="uploadButton">
-            <button class="btn2" (click)="uploadTemplates()">Save all</button>
+        <div *ngIf="imageDetailsList.length > 0">
+            <button class="btn2" (click)="uploadTemplates()">Train</button>
         </div>
     </div>
 </div> 
 
-<!-- ORIGNIAL CODE-->
-
-
- <!-- <div class="img-container">
-    <img #image [src]="imageSource" >
-</div>  -->
-
-
-<!-- <input [(ngModel)]="imageDetails.ImageName"> -->
-<!-- <p>{{croppedImageName}}</p> -->
-<!-- <img [src]="imageDestination" [height]="imgHeight/4" [width]="imgWidth/4" class="img-preview"> -->
-<!-- <button (click)="addtoImgList()">Save Zone</button> -->
-
-
-<!-- <div *ngFor = "let image of imageDetailsList; let i = index">
-    <label>{{image.ImageName}}</label>
-    <a [href] = "image.ImageDataURL" target="_blank">Click to preview template</a>
-    <button (click)="removeTemplate(i)">Delete Template</button>
-     <img [src]="image.ImageDataURL" [height]="image.ImgH" [width]="image.ImgH" class="img-preview"> -->
-<!-- </div> --> 
-
-<!-- <table *ngFor = "let image of imageDetailsList; let i = index">
-        <tr>
-            <td>{{image.ImageName}}</td>
-            <td><a [href] = "image.ImageDataURL" target="_blank">Click to preview template</a></td>
-            <td><button (click)="removeTemplate(i)"><mat-icon class="delete-file" style="font-size: 32px !important">delete</mat-icon> </button></td>
-        </tr>
-</table> -->
-<!-- 
-<div>
-    <button (click)="uploadTemplates()">Upload All</button>
-</div> -->

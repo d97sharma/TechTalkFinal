@@ -1,28 +1,14 @@
-<h3><b>Upload an invoice for training</b></h3>
+<div *ngIf = "!serveImages.markedb64Images else imgCropping">
+    <h3><b>Step 1. Upload an invoice to begin training</b></h3>
 
-<app-invoice-type></app-invoice-type>
+    <app-invoice-type></app-invoice-type>
 
-<br/>
-<br/>
+    <br/>
+    <br/>
 
-<!-- <input type="file" (change)="fileChangeEvent($event)" />
 
-<image-cropper
-    [imageChangedEvent]="imageChangedEvent"
-    [maintainAspectRatio]="false"
-    [resizeToWidth]="128"
-    format="png"
-    (imageCropped)="imageCropped($event)"
-    (imageLoaded)="imageLoaded()"
-    (cropperReady)="cropperReady()"
-    (loadImageFailed)="loadImageFailed()"
-></image-cropper>s
-
-<img [src]="croppedImage" /> -->
-
-<app-training-uploader></app-training-uploader>
-
-<a class="nav-link btn2" routerLink="/training-information" routerLinkActive="active">
-    Proceed
-<mat-icon style="font-size: 22px !important">send</mat-icon>  
-</a>
+    <app-training-uploader></app-training-uploader>
+</div>
+<ng-template #imgCropping>
+    <app-image-cropper></app-image-cropper>
+</ng-template>

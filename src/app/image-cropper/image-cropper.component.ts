@@ -18,24 +18,21 @@ export class ImageCropperComponent implements OnInit {
 
     @ViewChild("image", { static: false })
     public imageElement: ElementRef;
-    public croppedImageName:string="hi";
-    // public imageSource: string;
+
     public imageSource: any;
 
     public pageNumber:number;
 
     public imgWidth: number;
     public imgHeight: number;
-    public uploadButton:boolean=false;
     public imageDestination: string;
     public base64: string;
     private cropper: Cropper;
 
-    imageList: any[];
-    pdfImagesUrl: any[];
+    pageURLs: any[] = [];
+
     formData = new FormData();
 
-    //My additions
     imageDetails:ImageDetails;
     imageDetailsList:ImageDetails[] = [];
 
@@ -47,23 +44,21 @@ export class ImageCropperComponent implements OnInit {
               private serveImages:ServeB64imagesService,
               private _sanitizer: DomSanitizer
     ) {
-        // this.imageDestination = "";
-        // this.imageSource = "assets/angular.png";
-        //this.pdfImagesUrl = ["assets/angular.png","C:/Images/AmeriHome 1/AmeriHome 11"];
-        //this.imageSource = "C:/Images";
+        
     }
 
     ngOnInit() { 
 
+        this.sanitizeURLs( this.serveImages.markedb64Images);
         this.pageNumber = 0;
         this.imageDestination = "";
-        this.imageSource = this._sanitizer.bypassSecurityTrustResourceUrl('data:image/jpg;base64,' 
-        + this.serveImages.markedb64Images[this.pageNumber]);
-
         this.imageDetails = {ImageName : "", ImageDataURL : "", ImgH:0, ImgW:0}
+        this.imageSource = this.pageURLs[this.pageNumber];
+
     }
 
     public ngAfterViewInit() {
+
 
         this.cropper = new Cropper(this.imageElement.nativeElement, {
             zoomable: false,
@@ -76,7 +71,6 @@ export class ImageCropperComponent implements OnInit {
                 this.imgWidth = canvas.width;
                 this.imgHeight = canvas.height;
                 this.imageDestination = canvas.toDataURL("image/png");
-                // console.log(this.imageDestination);
             }
         });
         
@@ -95,13 +89,12 @@ export class ImageCropperComponent implements OnInit {
     }
 
     addtoImgList(){
-        this.uploadButton=true;
         this.imageDetails.ImageDataURL = this.imageDestination;
         this.imageDetails.ImgH = this.imgHeight;
         this.imageDetails.ImgW = this.imgWidth;
         this.imageDetailsList.push(this.imageDetails);
         this.imageDetails = {ImageName : "", ImageDataURL : "", ImgH:0, ImgW:0};
-        this.cropper.reset();
+        this.cropper.clear();
     }
 
 
@@ -155,20 +148,64 @@ export class ImageCropperComponent implements OnInit {
           });
   }
   incrementPage(){
-    this.pageNumber +=1 ;
+    if (this.pageNumber == this.pageURLs.length){
+      return;
+    }
+    Cropper.noConflict();
+    this.pageNumber++ ;
+    // Updating the cropper URL
 
-    this.imageSource = this._sanitizer.bypassSecurityTrustResourceUrl('data:image/jpg;base64,' 
-        + this.serveImages.markedb64Images[this.pageNumber]);
+    this.imageSource = this.pageURLs[this.pageNumber];
+    this.cropper.destroy();
+
+    this.cropper = new Cropper(this.imageElement.nativeElement, {
+      zoomable: false,
+      scalable: false,
+      aspectRatio: 0,
+      autoCrop:false,
+      autoCropArea: 0.0,
+      crop: () => {
+          const canvas = this.cropper.getCroppedCanvas();
+          this.imgWidth = canvas.width;
+          this.imgHeight = canvas.height;
+          this.imageDestination = canvas.toDataURL("image/png");
+      }
+    });
+    // this.cropper.replace(this.imageElement.nativeElement,true)
   }
   decrementPage(){
+    Cropper.noConflict();
     if (this.pageNumber == 0){
       return
     }
-    this.pageNumber -=1;
+    this.pageNumber--;
 
-    this.imageSource = this._sanitizer.bypassSecurityTrustResourceUrl('data:image/jpg;base64,' 
-        + this.serveImages.markedb64Images[this.pageNumber]);
+    this.imageSource = this.pageURLs[this.pageNumber];
+    this.cropper.destroy();
+    this.cropper = new Cropper(this.imageElement.nativeElement, {
+      zoomable: false,
+      scalable: false,
+      aspectRatio: 0,
+      autoCrop:false,
+      autoCropArea: 0.0,
+      crop: () => {
+          const canvas = this.cropper.getCroppedCanvas();
+          this.imgWidth = canvas.width;
+          this.imgHeight = canvas.height;
+          this.imageDestination = canvas.toDataURL("image/png");
+      }
+    });
 
+  }
+
+  sanitizeURLs(imgURL: any[]){
+
+    imgURL.forEach(element => {
+        this.pageURLs.push(this._sanitizer.bypassSecurityTrustResourceUrl('data:image/jpg;base64,' 
+        + element));
+      });
   }
 }
 
+    // this.imageSource = this._sanitizer.bypassSecurityTrustResourceUrl('data:image/jpg;base64,' 
+    //     + this.serveImages.markedb64Images[this.pageNumber]);

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ImageCroppedEvent } from 'ngx-image-cropper';
+import { ServeB64imagesService } from '../serve-b64images.service';
 
 
 @Component({
@@ -9,30 +9,11 @@ import { ImageCroppedEvent } from 'ngx-image-cropper';
 })
 export class TrainingModuleComponent implements OnInit {
 
-  imageChangedEvent: any = '';
-  croppedImage: any = '';
-  constructor() { }
+
+  constructor(
+    private serveImages:ServeB64imagesService) { }
 
   ngOnInit() {
   }
-  fileChangeEvent(event: any): void {
-    this.imageChangedEvent = event;
-  }
-
-  imageCropped(event: ImageCroppedEvent) {
-      this.croppedImage = event.base64;
-  }
-
-  imageLoaded() {
-      // show cropper
-  }
-
-  cropperReady() {
-      // cropper ready
-  }
-
-  loadImageFailed() {
-      // show message
-  }
-
+ 
 }

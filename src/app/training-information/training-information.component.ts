@@ -8,27 +8,10 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TrainingInformationComponent implements OnInit {
 
-  // index:number;
-  // templateInfo: TemplateInfo;
-  // templateInfoList: TemplateInfo[] = [];
-  // templateZones: number[] = [];
-  // constructor() { }
 
   ngOnInit() {
-    // this.index = 0;
-    // this.templateInfo = { TemplateImgURL: null, TemplateName: ""}
-    
+   
   }
 
-  // addTemplate(){
-  //   // this.index += 1;
-  //   // this.templateZones.push(this.index); 
-  //   this.templateInfoList.push(this.templateInfo);
-  //   this.templateInfo = { TemplateImgURL: null, TemplateName: ""}
-  // }
-
-  // removeTemplate(idx){
-  //   this.templateInfoList.splice(idx, 1);
-  // }
-
+  
 }
