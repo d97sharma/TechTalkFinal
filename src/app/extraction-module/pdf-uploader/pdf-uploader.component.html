@@ -3,7 +3,7 @@
   </div>
 
   <div  class="files-list" *ngFor="let fileName of fileNames;let i=index">
-    <p>{{ fileName }}</p>
+    <p (click)="openDialog()">{{ fileName }}</p>
     <button class="delete-file" (click)="deleteAttachment(i)">
         <mat-icon style="font-size: 32px !important">delete</mat-icon> 
     </button>

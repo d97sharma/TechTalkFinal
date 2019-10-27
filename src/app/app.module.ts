@@ -7,6 +7,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AngularMaterialModule } from './angular-material.module';
 import { ImageViewerModule } from 'ng2-image-viewer';
+import { NgxExtendedPdfViewerModule } from 'ngx-extended-pdf-viewer';
+
 
 
 import { AppRoutingModule } from './app-routing.module';
@@ -34,6 +36,7 @@ import { TrainingInformationComponent } from './training-information/training-in
 import { ImageCropperComponent } from './image-cropper/image-cropper.component';
 import { TemplatePreviewComponent } from './template-preview/template-preview.component';
 import { MarkedImagesComponent } from './marked-images/marked-images.component';
+import { FilePreViewComponent } from './file-pre-view/file-pre-view.component';
 
 
 @NgModule({
@@ -55,7 +58,8 @@ import { MarkedImagesComponent } from './marked-images/marked-images.component';
     TrainingInformationComponent,
     ImageCropperComponent,
     TemplatePreviewComponent,
-    MarkedImagesComponent
+    MarkedImagesComponent,
+    FilePreViewComponent
   ],
   imports: [
     BrowserModule,
@@ -70,7 +74,8 @@ import { MarkedImagesComponent } from './marked-images/marked-images.component';
     ReactiveFormsModule,
     ToastrModule.forRoot(),
     ImageViewerModule,
-    MatDialogModule
+    MatDialogModule,
+    NgxExtendedPdfViewerModule
   ],
   providers: [
     {
@@ -81,7 +86,7 @@ import { MarkedImagesComponent } from './marked-images/marked-images.component';
   ],
   bootstrap: [AppComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
-  entryComponents: [InformationDialogComponent,TemplatePreviewComponent,MarkedImagesComponent]
+  entryComponents: [InformationDialogComponent,TemplatePreviewComponent,FilePreViewComponent]
 })
 export class AppModule { }
 

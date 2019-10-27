@@ -10,7 +10,7 @@
   </tr>
   <tr *ngFor="let data of infoExtracted | keyvalue;let i=index">
       <td>{{i+1}}</td>
-      <td >{{ data.key }}</td>
+      <td (click) = "notifTrial(data.key)">{{ data.key }}</td>
       <td >{{ data.value }}</td>
   </tr>
 </table>

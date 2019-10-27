@@ -1,17 +1,15 @@
-import { Component, OnInit, ViewEncapsulation, Input } from '@angular/core';
-import { Router } from '@angular/router';
-import {FormControl} from '@angular/forms';
+import { Component, OnInit } from '@angular/core';
+
 import {PdfUploaderComponent} from '../extraction-module/pdf-uploader/pdf-uploader.component';
 import { FileNameService } from '../file-name.service';
 import {MatDialog, MatDialogConfig} from "@angular/material";
 import { InformationDialogComponent } from '../information-dialog/information-dialog.component';
 import { HttpClient } from '@angular/common/http';
-import { UploadStatus } from '../extraction-module/pdf-uploader/upload-status';
+
 import { NotificationService } from '../notification.service';
-import { stringify } from 'querystring';
-import { JsonPipe } from '@angular/common';
+
 import { ExtractedInformationService } from '../extracted-information.service';
-import { MarkedImagesComponent } from '../marked-images/marked-images.component';
+
 
 
 @Component({
@@ -32,7 +30,7 @@ myJson = {
 
 b64MarkedImg: any = null; // contains the recieved base64 images
 
-  constructor(private fileComponent: PdfUploaderComponent,
+  constructor(
               private fileNameService : FileNameService,
               private dialog: MatDialog,
               private http:HttpClient,
@@ -56,7 +54,9 @@ b64MarkedImg: any = null; // contains the recieved base64 images
   }
   displayInfo() {
             // change the IP when in office
-            this.http.post("http://172.23.179.252:5000/api/InfoExtractor  ",this.myJson).subscribe(
+            // IP (Office): 172.23.179.252
+            // IP (Home): 192.168.0.102
+            this.http.post("http://192.168.0.102:5000/api/InfoExtractor  ",this.myJson).subscribe(
               (data: any) => {
                 this.extractedInformation.b64MarkedImages = data["MarkedImages"]
                 this.extractedInformation.extractedData = data["Info"];
@@ -68,7 +68,7 @@ b64MarkedImg: any = null; // contains the recieved base64 images
 
       convertToJpeg(){
                       // change the IP to 172.23.179.252 when in office
-                      this.http.post("http://172.23.179.252:5000/api/ConvertPDFs",this.myJson).subscribe(
+                      this.http.post("http://192.168.0.102:5000/api/ConvertPDFs",this.myJson).subscribe(
                       (data: any) => {
                         this.notifyService.showSuccess(data["Status"],"");
                         this.displayInfo();                      

@@ -3,6 +3,8 @@ import { HttpClient } from '@angular/common/http';
 import { UploadStatus } from './upload-status'
 import { NotificationService } from 'src/app/notification.service';
 import { FileNameService } from 'src/app/file-name.service';
+import { MatDialog } from '@angular/material';
+import { FilePreViewComponent } from 'src/app/file-pre-view/file-pre-view.component';
 
 @Component({
   selector: 'app-pdf-uploader',
@@ -16,10 +18,13 @@ export class PdfUploaderComponent implements OnInit {
   status: UploadStatus;
   files: any[] = [];
   fileNames: string[]= [];
+  pdfURL: string;
   
   constructor(private http: HttpClient,
     private notifyService : NotificationService,
-    private fileNameService: FileNameService
+    private fileNameService: FileNameService,
+    private dialog: MatDialog
+
     ) { }
 
   ngOnInit() {
@@ -58,4 +63,20 @@ export class PdfUploaderComponent implements OnInit {
     this.fileNameService.fileName = this.fileNames;
   }
   
+
+  openDialog()
+        {
+
+          this.pdfURL = window.URL.createObjectURL(this.files[0]);
+          
+
+          this.dialog.open(FilePreViewComponent, {
+            height: '98%',
+            width: '88%',
+            panelClass: 'full-screen-modal',
+            data:{fileName: this.fileNames[0], fileData: this.pdfURL},
+            autoFocus: true
+          });
+        }
+
 }
