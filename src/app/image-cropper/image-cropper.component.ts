@@ -1,5 +1,5 @@
 import { MatDialog, MatDialogConfig } from '@angular/material';
-import { Component, OnInit, ViewChild, Input, ElementRef } from '@angular/core';
+import { Component, OnInit, ViewChild, Input, ElementRef, AfterViewInit } from '@angular/core';
 import Cropper from "cropperjs";
 import { HttpClient } from '@angular/common/http';
 import { ImageDetails } from "./image-details"
@@ -14,7 +14,7 @@ import { DomSanitizer } from '@angular/platform-browser';
     templateUrl: './image-cropper.component.html',
     styleUrls: ['./image-cropper.component.scss']
 })
-export class ImageCropperComponent implements OnInit {
+export class ImageCropperComponent implements OnInit, AfterViewInit {
 
     @ViewChild("image", { static: false })
     public imageElement: ElementRef;
@@ -58,22 +58,23 @@ export class ImageCropperComponent implements OnInit {
     }
 
     public ngAfterViewInit() {
-
-
-        this.cropper = new Cropper(this.imageElement.nativeElement, {
-            zoomable: false,
-            scalable: false,
-            aspectRatio: 0,
-            autoCrop:false,
-            autoCropArea: 0.0,
-            crop: () => {
-                const canvas = this.cropper.getCroppedCanvas();
-                this.imgWidth = canvas.width;
-                this.imgHeight = canvas.height;
-                this.imageDestination = canvas.toDataURL("image/png");
-            }
-        });
         
+    }
+
+    renderCropper(){ 
+        this.cropper = new Cropper(this.imageElement.nativeElement, {
+          zoomable: false,
+          scalable: false,
+          aspectRatio: 0,
+          autoCrop:false,
+          autoCropArea: 0.0,
+          crop: () => {
+              const canvas = this.cropper.getCroppedCanvas();
+              this.imgWidth = canvas.width;
+              this.imgHeight = canvas.height;
+              this.imageDestination = canvas.toDataURL("image/png");
+          }
+      });
     }
 
     public convToJPG(imageDetails:ImageDetails)
@@ -148,53 +149,32 @@ export class ImageCropperComponent implements OnInit {
           });
   }
   incrementPage(){
-    if (this.pageNumber == this.pageURLs.length){
+    
+    if (this.pageNumber == this.pageURLs.length-1){
       return;
     }
+
+    this.cropper.destroy();
+
     Cropper.noConflict();
     this.pageNumber++ ;
     // Updating the cropper URL
 
     this.imageSource = this.pageURLs[this.pageNumber];
-    this.cropper.destroy();
 
-    this.cropper = new Cropper(this.imageElement.nativeElement, {
-      zoomable: false,
-      scalable: false,
-      aspectRatio: 0,
-      autoCrop:false,
-      autoCropArea: 0.0,
-      crop: () => {
-          const canvas = this.cropper.getCroppedCanvas();
-          this.imgWidth = canvas.width;
-          this.imgHeight = canvas.height;
-          this.imageDestination = canvas.toDataURL("image/png");
-      }
-    });
-    // this.cropper.replace(this.imageElement.nativeElement,true)
   }
   decrementPage(){
-    Cropper.noConflict();
+
+
     if (this.pageNumber == 0){
       return
     }
+    this.cropper.destroy();
+    
+    Cropper.noConflict();
     this.pageNumber--;
 
     this.imageSource = this.pageURLs[this.pageNumber];
-    this.cropper.destroy();
-    this.cropper = new Cropper(this.imageElement.nativeElement, {
-      zoomable: false,
-      scalable: false,
-      aspectRatio: 0,
-      autoCrop:false,
-      autoCropArea: 0.0,
-      crop: () => {
-          const canvas = this.cropper.getCroppedCanvas();
-          this.imgWidth = canvas.width;
-          this.imgHeight = canvas.height;
-          this.imageDestination = canvas.toDataURL("image/png");
-      }
-    });
 
   }
 
@@ -206,6 +186,3 @@ export class ImageCropperComponent implements OnInit {
       });
   }
 }
-
-    // this.imageSource = this._sanitizer.bypassSecurityTrustResourceUrl('data:image/jpg;base64,' 
-    //     + this.serveImages.markedb64Images[this.pageNumber]);

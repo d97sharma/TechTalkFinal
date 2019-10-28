@@ -5,6 +5,6 @@ import { Injectable } from '@angular/core';
 })
 export class ServeB64imagesService {
 
-  markedb64Images:any = null ;
+  markedb64Images:string[];
   constructor() { }
 }

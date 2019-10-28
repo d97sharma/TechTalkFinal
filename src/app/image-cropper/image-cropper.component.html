@@ -5,14 +5,14 @@
     <div class="column left">
         <div class="img-container">
              <h3><b>Step 2. Crop the information zones</b></h3>
-             <div>
+             <div id = "pageNav">
 
                 <button (click)="decrementPage()">Prev Page</button>
-                {{this.pageNumber}}
+                <b>Page: {{this.pageNumber + 1}} of {{pageURLs.length}}</b>
                 <button (click)="incrementPage()">Next Page</button>
         
              </div>
-             <img #image [src]="imageSource" > 
+             <img #image [src]="imageSource" (load)="renderCropper()" > 
         </div>
     </div>
 
