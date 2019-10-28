@@ -63,7 +63,7 @@ export class ImageCropperComponent implements OnInit, AfterViewInit {
 
     renderCropper(){ 
         this.cropper = new Cropper(this.imageElement.nativeElement, {
-          zoomable: false,
+          zoomable: true,
           scalable: false,
           aspectRatio: 0,
           autoCrop:false,
