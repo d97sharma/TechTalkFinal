@@ -1,12 +1,4 @@
-<div *ngIf = "!serveImages.markedb64Images else imgCropping">
-    <h3><b>Step 1. Upload an invoice to begin training</b></h3>
-
-    <app-invoice-type></app-invoice-type>
-
-    <br/>
-    <br/>
-
-
+<div class="uploader" *ngIf = "!serveImages.markedb64Images else imgCropping">
     <app-training-uploader></app-training-uploader>
 </div>
 <ng-template #imgCropping>

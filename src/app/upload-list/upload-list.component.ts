@@ -21,7 +21,7 @@ import { ExtractedInformationService } from '../extracted-information.service';
 
 export class UploadListComponent implements OnInit {
 
-showFlag : boolean = true;
+showFlag : boolean = false;
 fileList: string[]= null;
 myJson = {
   "FileName":"",
@@ -34,7 +34,6 @@ b64MarkedImg: any = null; // contains the recieved base64 images
               private fileNameService : FileNameService,
               private dialog: MatDialog,
               private http:HttpClient,
-              private notifyService : NotificationService,
               private extractedInformation : ExtractedInformationService
               ){ }
   
@@ -67,10 +66,10 @@ b64MarkedImg: any = null; // contains the recieved base64 images
       }
 
       convertToJpeg(){
+                      this.showFlag = true;
                       // change the IP to 172.23.179.252 when in office
                       this.http.post("http://172.23.179.252:5000/api/ConvertPDFs",this.myJson).subscribe(
                       (data: any) => {
-                        this.notifyService.showSuccess(data["Status"],"");
                         this.displayInfo();                      
                     }
                     );
@@ -90,17 +89,4 @@ b64MarkedImg: any = null; // contains the recieved base64 images
           });
         }
 
-  // imagePreview()
-  // {
-
-  //   const dialogConfig = new MatDialogConfig();
-
-  //         dialogConfig.disableClose = true;
-  //         dialogConfig.autoFocus = true;
-
-  //         this.dialog.open(MarkedImagesComponent, {
-  //           height: '850px',
-  //           width: '750px',
-  //         });
-  // }
 }

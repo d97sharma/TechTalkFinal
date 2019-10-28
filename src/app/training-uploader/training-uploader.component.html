@@ -1,23 +1,34 @@
-<div class="uploadfilecontainer" (click)="fileInput.click()" appDragDrop (onFileDropped)="uploadFile($event)">
-    <input hidden type="file" #fileInput (change)="uploadFile($event.target.files)" multiple>
-  </div>
+<ng-template #uploadComponent>
+  <h3><b>Step 1. Upload an invoice to begin training</b></h3>
 
-  <div  class="files-list" *ngFor="let fileName of fileNames;let i=index">
-    <p (click)=filePreview(i)>{{ fileName }}</p>
-    <button class="delete-file" (click)="deleteAttachment(i)">
-        <mat-icon style="font-size: 32px !important">delete</mat-icon> 
-    </button>
-  </div>
-  <!-- {{ status.statusMessage }} -->
-  <div id="Extract_Button">
-    <button class="btn" (click)="sendFiles()" >
-      <mat-icon class="example-tab-icon">cloud_upload</mat-icon>
-      <div id="btnText">&nbsp; Upload</div>
-    </button>
-    <br />
-    <br />
-  </div>
+  <app-invoice-type></app-invoice-type>
 
+  <br/>
+  <br/>
+  <div class="uploadfilecontainer" (click)="fileInput.click()" appDragDrop (onFileDropped)="uploadFile($event)">
+      <input hidden type="file" #fileInput (change)="uploadFile($event.target.files)" multiple>
+    </div>
+
+    <div  class="files-list" *ngFor="let fileName of fileNames;let i=index">
+      <p (click)=filePreview(i)>{{ fileName }}</p>
+      <button class="delete-file" (click)="deleteAttachment(i)">
+          <mat-icon style="font-size: 32px !important">delete</mat-icon> 
+      </button>
+    </div>
+
+    <div id="Extract_Button">
+      <button class="btn" (click)="sendFiles()" >
+        <mat-icon class="example-tab-icon">cloud_upload</mat-icon>
+        <div id="btnText">&nbsp; Upload</div>
+      </button>
+      <br />
+      <br />
+  </div>
+</ng-template>
+
+<div class= "spinner" *ngIf = "showSpinner else uploadComponent">
+  <mat-spinner  color = "accent"></mat-spinner>
+</div>
   
 
   

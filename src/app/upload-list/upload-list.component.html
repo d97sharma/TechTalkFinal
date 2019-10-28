@@ -35,3 +35,6 @@
 <button class="btn" (click)="openDialog()">Extract All</button>
 </div>
 <p>{{fileNameService.fileType}}</p>
+<div *ngIf = "showFlag && !extractedInformation.extractedData">
+  <mat-spinner color = "accent"></mat-spinner>
+</div>

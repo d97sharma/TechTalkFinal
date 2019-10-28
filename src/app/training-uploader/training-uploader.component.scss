@@ -75,8 +75,8 @@
   }
   
   h3{
-    color: rgb(173, 173, 173)
-  }
+    color: rgb(248, 247, 247)
+}
 
 
 
@@ -118,6 +118,10 @@
     border-radius: 8px;
   }
 
-  h3{
-    color: rgb(173, 173, 173)
-  }
+.spinner{
+  margin: 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}

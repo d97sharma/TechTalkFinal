@@ -20,9 +20,8 @@ export class TrainingUploaderComponent implements OnInit {
 
   // markedImages: any = null;
 
-
+  showSpinner:boolean;
   pdfURL: string = "";
-  progress: number;
   files: any[] = [];
   fileNames: string[]= [];
   fileType: string;
@@ -31,27 +30,30 @@ export class TrainingUploaderComponent implements OnInit {
     "FileType":""
   }
 
-  constructor(private http: HttpClient,
+  constructor(
+    private http: HttpClient,
     private notifyService : NotificationService,
     private fileNameService: FileNameService,
     private serveImages: ServeB64imagesService,
     private dialog: MatDialog
-    ) { }
+    ) { 
+      this.showSpinner = false;
+    }
 
     ngOnInit() {
       this.fileType = this.fileNameService.fileType;
     }
     sendFiles (){ 
+      if (this.files.length === 0) {
+        return;
+      }
+
+      this.showSpinner = true;
       this.fileType = this.fileNameService.fileType;
       this.myJson = {
         "FileName":this.fileNames[0],
         "FileType":this.fileNameService.fileType
       }
-      
-      if (this.files.length === 0) {
-        return;
-      }
-     
       const formData = new FormData();
       
       for (let file of this.files) {
