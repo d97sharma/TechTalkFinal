@@ -8,10 +8,12 @@ import { ExtractedInformationService } from '../extracted-information.service';
 })
 export class MarkedImagesComponent implements OnInit {
 
+  b64MarkedImages:string[];
+  b64ShadedImages:string[];
   constructor(private extractedInformation : ExtractedInformationService) { }
-b64MarkedImages:string[];
   ngOnInit() {
     this.b64MarkedImages = this.extractedInformation.b64MarkedImages;
+
   }
 
 }

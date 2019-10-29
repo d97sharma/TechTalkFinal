@@ -7,12 +7,22 @@
              <h3><b>Step 2. Crop the information zones</b></h3>
              <div id = "pageNav">
 
-                <button (click)="decrementPage()">Prev Page</button>
-                <b>Page: {{this.pageNumber + 1}} of {{pageURLs.length}}</b>
-                <button (click)="incrementPage()">Next Page</button>
-        
+                <button mat-mini-fab (click)="decrementPage()">
+                    <mat-icon>
+                        arrow_back
+                    </mat-icon>
+                </button> &nbsp; &nbsp;
+                <b>Page: {{this.pageNumber + 1}} of {{pageURLs.length}}</b> &nbsp; &nbsp;
+                <button mat-mini-fab (click)="incrementPage()">
+                   <mat-icon>
+                       arrow_forward
+                   </mat-icon>
+                </button> 
+                &nbsp; &nbsp;
+                <button mat-raised-button color="primary" (click)="clearCropper()">Clear Cropper</button>
              </div>
-             <img #image [src]="imageSource" (load)="renderCropper()" > 
+             <br>
+             <img hidden #image [src]="imageSource" (load)="renderCropper()" > 
         </div>
     </div>
 
@@ -47,7 +57,12 @@
 
 <br>
         <div *ngIf="imageDetailsList.length > 0">
-            <button class="btn2" (click)="uploadTemplates()">Train</button>
+            <button mat-raised-button color="accent" (click)="uploadTemplates()">Train</button>
+            &nbsp;
+            &nbsp;
+            <button mat-raised-button color="warn" (click)="clearCroppedZones()">
+                Delete All
+            </button>
         </div>
     </div>
 </div> 

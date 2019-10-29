@@ -12,15 +12,32 @@ export class InformationDialogComponent implements OnInit {
   constructor(
               private extractedInformation : ExtractedInformationService,
               private notifyService : NotificationService
-               ) { }
+               ) { 
+               }
 
-infoExtracted :any;
+  infoExtracted :any;
+  b64MarkedImages:string[];
+
+  filterApplied:string;
+  imageSource:string[];
 
   ngOnInit() {
           this.infoExtracted = this.extractedInformation.extractedData;
+          this.b64MarkedImages = this.extractedInformation.b64MarkedImages;
+          this.imageSource = this.b64MarkedImages;
+          this.filterApplied = null;
   }
-  notifTrial(value: string){
-    this.notifyService.showSuccess(value,"");
+  applyFilter(templateName: string){
+    this.filterApplied = templateName;
+    const newSource = [];
+    newSource.push(this.infoExtracted[templateName][1]);
+    this.imageSource = newSource;
+  }
+  resetFilter(){
+    this.filterApplied = null;
+    this.imageSource = this.b64MarkedImages;
+    this.notifyService.showSuccess("Filter Reset","")
+
   }
 
 }

@@ -76,7 +76,13 @@ export class ImageCropperComponent implements OnInit, AfterViewInit {
           }
       });
     }
-
+    clearCroppedZones(){
+      this.imageDetailsList = [];
+    }
+    clearCropper(){
+      this.cropper.reset();
+      this.cropper.clear();
+    }
     public convToJPG(imageDetails:ImageDetails)
     {
 
@@ -95,7 +101,7 @@ export class ImageCropperComponent implements OnInit, AfterViewInit {
         this.imageDetails.ImgW = this.imgWidth;
         this.imageDetailsList.push(this.imageDetails);
         this.imageDetails = {ImageName : "", ImageDataURL : "", ImgH:0, ImgW:0};
-        this.cropper.clear();
+        this.clearCropper();
     }
 
 

@@ -1,16 +1,29 @@
-<h2>Information Extracted</h2>
+<div class="infoTable">
+  <h2>Extracted Information</h2>
 
-<table class="files-table">
-  <tr>
-      <th>S.No.</th>
-      <th>Data Field</th> 
-      <th>Value</th>
-      
-      
-  </tr>
-  <tr *ngFor="let data of infoExtracted | keyvalue;let i=index">
-      <td>{{i+1}}</td>
-      <td (click) = "notifTrial(data.key)">{{ data.key }}</td>
-      <td >{{ data.value }}</td>
-  </tr>
-</table>
+  <table class="files-table">
+    <tr>
+        <th>S.No.</th>
+        <th>Data Field</th> 
+        <th>Value</th>
+        
+        
+    </tr>
+    <tr *ngFor="let data of infoExtracted | keyvalue;let i=index">
+        <td>{{i+1}}</td>
+        <td (click) = "applyFilter(data.key)">{{ data.key }}</td>
+        <td >{{ data.value[0] }}</td>
+    </tr>
+  </table>
+</div>
+
+<div>
+  <h5 *ngIf="filterApplied">Fileted By: {{filterApplied}}</h5>
+  <button mat-raised-button color="primary" (click)="resetFilter()">Reset Filter</button>
+  <app-image-viewer [images]="imageSource"
+    [idContainer]="'idOnHTML'"
+    [loadOnInit]="true">
+    
+  </app-image-viewer>
+</div>
+

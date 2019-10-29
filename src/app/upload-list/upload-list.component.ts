@@ -1,16 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-
 import {PdfUploaderComponent} from '../extraction-module/pdf-uploader/pdf-uploader.component';
 import { FileNameService } from '../file-name.service';
-import {MatDialog, MatDialogConfig} from "@angular/material";
-import { InformationDialogComponent } from '../information-dialog/information-dialog.component';
+import {MatDialog} from "@angular/material";
 import { HttpClient } from '@angular/common/http';
-
-import { NotificationService } from '../notification.service';
-
 import { ExtractedInformationService } from '../extracted-information.service';
-
-
 
 @Component({
   selector: 'app-upload-list',
@@ -32,7 +25,6 @@ b64MarkedImg: any = null; // contains the recieved base64 images
 
   constructor(
               private fileNameService : FileNameService,
-              private dialog: MatDialog,
               private http:HttpClient,
               private extractedInformation : ExtractedInformationService
               ){ }
@@ -55,11 +47,10 @@ b64MarkedImg: any = null; // contains the recieved base64 images
             // change the IP when in office
             // IP (Office): 172.23.179.252
             // IP (Home): 192.168.0.102
-            this.http.post("http://172.23.179.252:5000/api/InfoExtractor  ",this.myJson).subscribe(
+            this.http.post("http://192.168.0.102:5000/api/InfoExtractor  ",this.myJson).subscribe(
               (data: any) => {
                 this.extractedInformation.b64MarkedImages = data["MarkedImages"]
-                this.extractedInformation.extractedData = data["Info"];
-                this.openDialog();                      
+                this.extractedInformation.extractedData = data["Info"];            
             }
             );
             
@@ -67,8 +58,9 @@ b64MarkedImg: any = null; // contains the recieved base64 images
 
       convertToJpeg(){
                       this.showFlag = true;
-                      // change the IP to 172.23.179.252 when in office
-                      this.http.post("http://172.23.179.252:5000/api/ConvertPDFs",this.myJson).subscribe(
+                      // IP (Office): 172.23.179.252 
+                      // IP (Home): 192.168.0.102
+                      this.http.post("http://192.168.0.102:5000/api/ConvertPDFs",this.myJson).subscribe(
                       (data: any) => {
                         this.displayInfo();                      
                     }
@@ -76,17 +68,5 @@ b64MarkedImg: any = null; // contains the recieved base64 images
                                  
                 }
       
-        openDialog()
-        {
-          const dialogConfig = new MatDialogConfig();
-
-          dialogConfig.disableClose = true;
-          dialogConfig.autoFocus = true;
-
-          this.dialog.open(InformationDialogComponent, {
-            height: '400px',
-            width: '1000px',
-          });
-        }
-
+        
 }

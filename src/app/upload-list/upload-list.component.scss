@@ -132,3 +132,23 @@ background-color:red;
     // background-color:    #4CAF50;
     color: white;
   }
+
+.spinner{
+  margin: 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.invoiceList{
+  padding: 40px 0;
+  text-align: center;
+}
+
+h3{
+  color: rgb(248, 247, 247)
+}
+h2{
+  color: rgb(248, 247, 247)
+}
