@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { UploadStatus } from './upload-status'
 import { NotificationService } from 'src/app/notification.service';
@@ -20,6 +20,8 @@ export class PdfUploaderComponent implements OnInit {
   fileNames: string[]= [];
   pdfURL: string;
   
+  @Output() hideStepper: EventEmitter<any> = new EventEmitter<any>();
+
   constructor(private http: HttpClient,
     private notifyService : NotificationService,
     private fileNameService: FileNameService,
@@ -43,7 +45,10 @@ export class PdfUploaderComponent implements OnInit {
 
     // 172.23.179.252
     this.http.post<any>("http://localhost:2136/api/upload/files", formData).subscribe(
-        () => {this.notifyService.showSuccess("File uploaded successfully", "Notification");}
+        () => { 
+                  this.notifyService.showSuccess("File uploaded successfully", "Notification"); 
+                  this.hideStepper.emit(true);
+                }
       
     );
   }

@@ -1,55 +1,43 @@
 
 
    <mat-horizontal-stepper [backgroundColor]="mat-primary" *ngIf="showMePartially">
-    <mat-step  label="1. Upload Mode" state="number">
+    <mat-step  label="1. Upload Mode and Invoice Type" state="number">
       
     <div>
         <div>
              <app-batch-or-single></app-batch-or-single> 
         </div>
+        <br/>
+        <div>
+          <app-invoice-type></app-invoice-type>          
+        </div>
     </div>  
-  
-      <div>
-        <button mat-button matStepperNext class="btn">Next</button>
-      </div>
+    <br/>
+    <div>
+      <button mat-mini-fab matStepperNext color="next">
+          <mat-icon aria-hidden="false" aria-label="Example next icon">navigate_next</mat-icon>        
+      </button>
+    </div>
     
     </mat-step>
-    <mat-step  label="2. Invoice Type" state="type"> 
-      <div>
-            <div>
-                    <app-invoice-type></app-invoice-type>
-                    
-            </div>
-      </div>
-      <div>
-          <button mat-button matStepperPrevious class="btn2">Back</button>
-        &nbsp;
-          <button mat-button matStepperNext class="btn" > Next</button>
-        
-      </div>
-      
     
-    </mat-step>
-    <mat-step label="3. Upload Invoice/s" state="upload">
+    <mat-step label="2. Upload Invoice/s" state="upload">
       <h3>Upload invoices here or drag and drop them below </h3>
-      <app-pdf-uploader></app-pdf-uploader>   
-      
-        
-        <a class="nav-link btn2" routerLink="/upload-list" routerLinkActive="active">
-          Proceed
-          <mat-icon style="font-size: 22px !important">send</mat-icon>  
-        </a>
-      
-      <!-- </button> -->
+      <app-pdf-uploader (hideStepper)= "stepperStateChange($event)"></app-pdf-uploader>       
+      <button mat-mini-fab matStepperPrevious color="previous">
+          <mat-icon aria-hidden="false" aria-label="Example next icon" >navigate_before</mat-icon>        
+      </button>
+
     </mat-step>
+
+
+  
   
     <!-- Icon overrides. -->
     <ng-template matStepperIcon="number">
       <mat-icon>plus_one</mat-icon>
     </ng-template>
-    <ng-template matStepperIcon="type">
-      <mat-icon>find_in_page</mat-icon>
-    </ng-template>
+
     <ng-template matStepperIcon="upload">
         <mat-icon>attachment</mat-icon>
       </ng-template>

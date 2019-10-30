@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { FileNameService } from '../file-name.service';
-import {MatDialog} from "@angular/material";
 import { HttpClient } from '@angular/common/http';
 import { ExtractedInformationService } from '../extracted-information.service';
 
@@ -45,7 +44,7 @@ b64MarkedImg: any = null; // contains the recieved base64 images
             // change the IP when in office
             // IP (Office): 172.23.179.252 / 172.23.115.77
             // IP (Home): 192.168.0.102
-            this.http.post("http://172.23.115.77:5000/api/InfoExtractor  ",this.myJson).subscribe(
+            this.http.post("http://192.168.0.102:5000/api/InfoExtractor  ",this.myJson).subscribe(
               (data: any) => {
                 this.extractedInformation.b64MarkedImages = data["MarkedImages"]
                 this.extractedInformation.extractedData = data["Info"];            
@@ -58,7 +57,7 @@ b64MarkedImg: any = null; // contains the recieved base64 images
                       this.showFlag = true;
                       // IP (Office): 172.23.179.252 / 172.23.115.77
                       // IP (Home): 192.168.0.102
-                      this.http.post("http://172.23.115.77:5000/api/ConvertPDFs",this.myJson).subscribe(
+                      this.http.post("http://192.168.0.102:5000/api/ConvertPDFs",this.myJson).subscribe(
                       (data: any) => {
                         this.displayInfo();                      
                     }

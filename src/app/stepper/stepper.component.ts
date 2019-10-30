@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { NotificationService } from '../notification.service';
 
@@ -13,6 +13,8 @@ export class StepperComponent implements OnInit {
   secondFormGroup: FormGroup;
   showMePartially: boolean;
 
+  @Output() stepperHide: EventEmitter<any> = new EventEmitter<any>();
+
   constructor(private _formBuilder: FormBuilder,
     private notifyService : NotificationService
     ) { }
@@ -26,10 +28,9 @@ export class StepperComponent implements OnInit {
       secondCtrl: ['', Validators.required]
     });
   }
-    // showToaster()
-    // {
-    //   this.notifyService.showSuccess("Data shown successfully !!", "Notification");
-    //   this.showMePartially = false;
-    // }
+
+  stepperStateChange(stepperState: boolean){
+    this.stepperHide.emit(stepperState);
+  }
 
 }

@@ -8,9 +8,14 @@ import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 })
 export class ExtractionModuleComponent implements OnInit {
 
+  hideStepper: boolean;
   constructor() { }
   
   ngOnInit() {
+    this.hideStepper = false;
+  }
+  stepperStateChange(hideFlag: boolean){
+    this.hideStepper = hideFlag;
   }
 
 }
