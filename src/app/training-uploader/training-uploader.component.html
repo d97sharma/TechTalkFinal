@@ -10,16 +10,18 @@
     </div>
 
     <div  class="files-list" *ngFor="let fileName of fileNames;let i=index">
-      <p (click)=filePreview(i)>{{ fileName }}</p>
-      <button class="delete-file" (click)="deleteAttachment(i)">
-          <mat-icon style="font-size: 32px !important">delete</mat-icon> 
+      <button mat-button color = "primary" (click)=filePreview(i)>{{ fileName }}</button>
+      <button mat-icon-button color="warn" (click)="deleteAttachment(i)">
+          <mat-icon>delete</mat-icon> 
       </button>
     </div>
 
+
+    <br />
     <div id="Extract_Button">
-      <button class="btn" (click)="sendFiles()" >
-        <mat-icon class="example-tab-icon">cloud_upload</mat-icon>
-        <div id="btnText">&nbsp; Upload</div>
+      <button mat-raised-button color="primary" (click)="sendFiles()" >
+        <mat-icon>cloud_upload</mat-icon>
+        &nbsp;Upload
       </button>
       <br />
       <br />

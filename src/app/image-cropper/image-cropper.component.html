@@ -7,19 +7,22 @@
              <h3><b>Step 2. Crop the information zones</b></h3>
              <div id = "pageNav">
 
-                <button mat-mini-fab (click)="decrementPage()">
-                    <mat-icon>
+                <button mat-mini-fab (click)="decrementPage()" color="pageNav">
+                        <mat-icon aria-hidden="false" aria-label="Example backward icon" >
                         arrow_back
                     </mat-icon>
                 </button> &nbsp; &nbsp;
+
                 <b>Page: {{this.pageNumber + 1}} of {{pageURLs.length}}</b> &nbsp; &nbsp;
-                <button mat-mini-fab (click)="incrementPage()">
-                   <mat-icon>
-                       arrow_forward
-                   </mat-icon>
-                </button> 
+ 
+                <button mat-mini-fab  (click)="incrementPage()" color="pageNav">
+                        <mat-icon aria-hidden="false" aria-label="Example forward icon" >
+                            arrow_forward
+                        </mat-icon>        
+                </button>
+
                 &nbsp; &nbsp;
-                <button mat-raised-button color="primary" (click)="clearCropper()">Clear Cropper</button>
+                <button mat-raised-button color="clearCropper" (click)="clearCropper()">Clear Cropper</button>
              </div>
              <br>
              <img hidden #image [src]="imageSource" (load)="renderCropper()" > 
@@ -30,26 +33,28 @@
         <br>
         <div>
             <mat-label>Template Name: </mat-label> &nbsp;
-            <input placeholder="Enter Template Name" [(ngModel)] = "imageDetails.ImageName">
-        </div>
-        <div>
-            <button class = "addButton" (click)="addtoImgList()">
-            <mat-icon style="font-size: 22px !important">add</mat-icon>
+            <input placeholder="Enter Template Name" [(ngModel)] = "imageDetails.ImageName"> &nbsp;
+            <button mat-mini-fab (click)="addtoImgList()" color="add">
+                    <mat-icon aria-hidden="false" aria-label="Example add icon" >add</mat-icon>        
             </button>
         </div>
         <br>
         <div>
         <table class="files-table" *ngIf = "imageDetailsList.length > 0">
                 <tr>   
-                    <td>Zone Name</td>
-                    <td>Actions</td>
+                    <th>Zone Name</th>
+                    <th>Actions</th>
 
                 </tr>
                 <tr *ngFor = "let image of imageDetailsList; let i = index">
                     <td>{{image.ImageName}}</td>
                     <td>
-                        <button class="btn" (click)="imagePreview(image)">Preview Template</button>
-                        <button class="delete-file" (click)="removeTemplate(i)"><mat-icon class="delete-file" style="font-size: 32px !important">delete</mat-icon> </button>
+                        <button mat-flat-button color= "primary"(click)="imagePreview(image)">Preview Template</button>
+                        <button mat-icon-button  (click)="removeTemplate(i)" color="delete">
+                                <mat-icon aria-hidden="false" aria-label="Example forward icon" >
+                                    delete
+                                </mat-icon>        
+                        </button>
                     </td>
                 </tr>
         </table>

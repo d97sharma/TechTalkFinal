@@ -8,7 +8,7 @@ import { NotificationService } from '../notification.service';
   styleUrls: ['./stepper.component.scss']
 })
 export class StepperComponent implements OnInit {
-  isLinear = false;
+  isLinear = true;
   firstFormGroup: FormGroup;
   secondFormGroup: FormGroup;
   showMePartially: boolean;

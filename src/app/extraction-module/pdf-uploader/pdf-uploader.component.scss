@@ -41,39 +41,7 @@
     text-align:center;
   }
   
-  #btnText {
-    display: inline-block;
-    font-size: 18px;
-    font-weight:bold
-  }
-  
-  .btn {
-    background-color: #4CAF50; /* Green */
-    border: none;
-    color: white;
-    padding: 6px 12px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 18px;
-    -webkit-transition-duration: 0.4s; /* Safari */
-    transition-duration: 0.4s;
-    cursor: pointer;
-    border-radius: 8px;
-  }
-  
-  .btn {
-    background-color: rgb(26, 159, 192);
-    color: rgb(224, 219, 219);
-    border: 2px solid purple;
-  }
-  
-  .btn:hover {
-    background-color: purple;
-    color: rgb(173, 173, 173);
-    box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
-  }
-  
+
   h3{
     color: rgb(173, 173, 173)
   }

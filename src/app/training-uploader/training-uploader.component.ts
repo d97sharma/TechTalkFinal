@@ -18,7 +18,8 @@ export interface FilePreviewData {
 })
 export class TrainingUploaderComponent implements OnInit {
 
-  // markedImages: any = null;
+
+  displayedColumns: string[] = ['serialNum', 'fileName', 'actions'];
 
   showSpinner:boolean;
   pdfURL: string = "";

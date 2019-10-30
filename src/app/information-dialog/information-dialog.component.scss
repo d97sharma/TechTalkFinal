@@ -3,7 +3,7 @@
     border-collapse: collapse;
     width: 100%;
     text-align: center;
-  }
+  } 
   
   .files-table td, tr {
     border: 1px solid #ddd;
@@ -17,7 +17,7 @@ color:black;}
     color:black;}
 
 
-  .files-table tr:hover {background-color:purple;
+  .files-table tr:hover {background-color:lightsteelblue;
 color: white;}
   
   .files-table th {
@@ -40,4 +40,36 @@ h5{
 img {
   height:80%;
   width: auto;
+}
+
+.column {
+    
+  float: left;
+  padding: 10px;
+  height: 100%; /* Should be removed. Only for demonstration */
+}
+
+.left {
+  width: 55%;
+  
+}
+
+.right {
+    
+  width: 45%;
+  background-color: #343a40;
+  color: white;
+  overflow: hidden;
+}
+
+/* Clear floats after the columns */
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+.mat-reset{
+  background-color: white;
+  color: red;
 }
