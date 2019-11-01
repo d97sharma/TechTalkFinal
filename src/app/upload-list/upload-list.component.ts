@@ -35,8 +35,7 @@ b64MarkedImg: any = null; // contains the recieved base64 images
       "FileName":this.fileList[0].fileName,
       "FileType":this.fileNameService.fileType
     }    
-   this.fileNameService.fileName = undefined;
-    // this.files = this.fileComponent.files;
+
   }
   displayInfo() {   
     // change the IP when in office

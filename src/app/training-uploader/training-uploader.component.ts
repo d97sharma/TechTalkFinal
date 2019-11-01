@@ -5,6 +5,7 @@ import { FileNameService } from 'src/app/file-name.service';
 import { ServeB64imagesService } from '../serve-b64images.service';
 import { MatDialog } from '@angular/material';
 import { FilePreViewComponent } from '../file-pre-view/file-pre-view.component';
+import { FileData } from '../extraction-module/pdf-uploader/pdf-uploader.component';
 
 export interface FilePreviewData {
   fileName: string,
@@ -20,13 +21,14 @@ export class TrainingUploaderComponent implements OnInit {
 
   showSpinner:boolean;
   pdfURL: string = "";
-  files: any[] = [];
-  fileNames: string[]= [];
+
   fileType: string;
   myJson = {
     "FileName":"",
     "FileType":""
   }
+
+  fileCollection: FileData[];
 
   constructor(
     private http: HttpClient,
@@ -40,22 +42,23 @@ export class TrainingUploaderComponent implements OnInit {
 
     ngOnInit() {
       this.fileType = this.fileNameService.fileType;
+      this.fileCollection = [];
     }
     sendFiles (){ 
-      if (this.files.length === 0) {
+      if (this.fileCollection.length === 0) {
         return;
       }
 
       this.showSpinner = true;
       this.fileType = this.fileNameService.fileType;
       this.myJson = {
-        "FileName":this.fileNames[0],
+        "FileName":this.fileCollection[0].fileName,
         "FileType":this.fileNameService.fileType
       }
       const formData = new FormData();
       
-      for (let file of this.files) {
-        formData.append("File", file);
+      for (let file of this.fileCollection) {
+        formData.append(file.fileName, file.fileData);
       }
   
       this.http.post("http://localhost:2136/api/upload/files", formData).subscribe(
@@ -77,32 +80,30 @@ export class TrainingUploaderComponent implements OnInit {
     uploadFile(event) {
       for (let index = 0; index < event.length; index++) {
         const element = event[index];
-        this.fileNames.push(element.name.split('.')[0]);
-        this.files.push(element);
+        this.fileCollection.push({fileName:element.name.split('.')[0],fileData:element})
         //this.fileNameService.fileName.push(element.name);
       }  
-      this.fileNameService.fileName = this.fileNames;
+      this.fileNameService.fileCollection = this.fileCollection;
 
       
     }
 
     deleteAttachment(index) {
-      this.files.splice(index, 1);
-      this.fileNames.splice(index, 1);
-      this.fileNameService.fileName = this.fileNames;
+      this.fileCollection.splice(index, 1);
+      this.fileNameService.fileCollection = this.fileCollection;
     }
 
     filePreview(id: number)
         {
 
-          this.pdfURL = window.URL.createObjectURL(this.files[id]);
+          this.pdfURL = window.URL.createObjectURL(this.fileCollection[id].fileData);
           
 
           this.dialog.open(FilePreViewComponent, {
             height: '98%',
             width: '88%',
             panelClass: 'full-screen-modal',
-            data:{fileName: this.fileNames[id], fileData: this.pdfURL},
+            data:{fileName: this.fileCollection[id].fileName, fileData: this.pdfURL},
             autoFocus: true
           });
         }

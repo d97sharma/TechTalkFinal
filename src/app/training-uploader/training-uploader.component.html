@@ -9,9 +9,9 @@
       <input hidden type="file" #fileInput (change)="uploadFile($event.target.files)">
     </div>
 
-    <div  class="files-list" *ngFor="let fileName of fileNames;let i=index">
-      <button mat-button color = "primary" (click)=filePreview(i)>{{ fileName }}</button>
-      <button mat-icon-button color="warn" (click)="deleteAttachment(i)">
+    <div  class="files-list" *ngFor="let file of fileCollection;let i=index">
+      <button mat-button color = "primary" (click)=filePreview(i)>{{ file.fileName }}</button>
+      <button mat-icon-button color="gg" (click)="deleteAttachment(i)">
           <mat-icon>delete</mat-icon> 
       </button>
     </div>
