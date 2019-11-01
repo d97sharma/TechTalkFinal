@@ -20,6 +20,8 @@
         </tr>
       </table>
     </div>
+    <button (click)="returnToList()">Done</button>
+
   </div>
   <div class="column left">
     <h5 *ngIf="filterApplied">
@@ -31,12 +33,6 @@
       [idContainer]="'idOnHTML'"
       [loadOnInit]="true">
     </app-image-viewer>
-
-                      
-    <!-- <a class="nav-link btn2" routerLink="/upload-list" routerLinkActive="active">
-      Proceed
-      <mat-icon style="font-size: 22px !important">send</mat-icon>  
-    </a> -->
 
   </div>
 </div>

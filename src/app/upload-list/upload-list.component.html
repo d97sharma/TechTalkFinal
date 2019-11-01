@@ -16,10 +16,7 @@
             <td>{{i+1}}</td>
             <td >{{ fileName }}</td>
             <td >
-                  <button class="btn2" (click)="convertToJpeg()" >Extract Info</button>  &nbsp;&nbsp;
-                  <button class="delete-file" (click)="deleteAttachment(i)">
-                  <mat-icon class="delete-file" style="font-size: 32px !important">delete</mat-icon> </button> &nbsp;&nbsp;
-                  
+                  <button class="btn2" (click)="convertToJpeg(i)" >Extract Info</button>  &nbsp;&nbsp;
             </td>
         </tr>
       </table>

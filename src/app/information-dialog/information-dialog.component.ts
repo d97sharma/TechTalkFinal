@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+
 import { ExtractedInformationService } from '../extracted-information.service';
 import { NotificationService } from '../notification.service';
+
 
 @Component({
   selector: 'app-information-dialog',
@@ -11,7 +13,7 @@ export class InformationDialogComponent implements OnInit {
 
   constructor(
               private extractedInformation : ExtractedInformationService,
-              private notifyService : NotificationService
+              private notifyService : NotificationService,
                ) { 
                }
 
@@ -39,5 +41,14 @@ export class InformationDialogComponent implements OnInit {
     this.notifyService.showSuccess("Filter Reset","")
 
   }
+
+  returnToList(){
+    this.extractedInformation.extractedData = null;
+    this.extractedInformation.b64MarkedImages = null;
+  }
+
+  // stayHere(id: string){
+  //   this.modalService.close(id);
+  // }
 
 }

@@ -8,7 +8,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AngularMaterialModule } from './angular-material.module';
 import { ImageViewerModule } from 'ng2-image-viewer';
 import { NgxExtendedPdfViewerModule } from 'ngx-extended-pdf-viewer';
-
+import { ModalModule } from './_modal';
 
 
 import { AppRoutingModule } from './app-routing.module';
@@ -59,7 +59,7 @@ import { FilePreViewComponent } from './file-pre-view/file-pre-view.component';
     ImageCropperComponent,
     TemplatePreviewComponent,
     MarkedImagesComponent,
-    FilePreViewComponent
+    FilePreViewComponent,
   ],
   imports: [
     BrowserModule,
@@ -75,7 +75,8 @@ import { FilePreViewComponent } from './file-pre-view/file-pre-view.component';
     ToastrModule.forRoot(),
     ImageViewerModule,
     MatDialogModule,
-    NgxExtendedPdfViewerModule
+    NgxExtendedPdfViewerModule,
+    ModalModule
   ],
   providers: [
     {

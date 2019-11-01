@@ -1,10 +1,17 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { UploadStatus } from './upload-status'
-import { NotificationService } from 'src/app/notification.service';
 import { FileNameService } from 'src/app/file-name.service';
 import { MatDialog } from '@angular/material';
 import { FilePreViewComponent } from 'src/app/file-pre-view/file-pre-view.component';
+
+import { NotificationService } from 'src/app/notification.service';
+import { ModalService } from 'src/app/_modal';
+
+export interface FileData {
+  fileName: string,
+  fileData: any;
+}
 
 @Component({
   selector: 'app-pdf-uploader',
@@ -25,7 +32,8 @@ export class PdfUploaderComponent implements OnInit {
   constructor(private http: HttpClient,
     private notifyService : NotificationService,
     private fileNameService: FileNameService,
-    private dialog: MatDialog
+    private dialog: MatDialog,
+    private modalService: ModalService
 
     ) { }
 
@@ -69,17 +77,18 @@ export class PdfUploaderComponent implements OnInit {
   }
   
 
-  openDialog()
+  filePreview(id: number)
         {
 
-          this.pdfURL = window.URL.createObjectURL(this.files[0]);
-          
+          this.pdfURL = window.URL.createObjectURL(this.files[id]);
+          // this.modalService.open(id);
+
 
           this.dialog.open(FilePreViewComponent, {
             height: '98%',
             width: '88%',
             panelClass: 'full-screen-modal',
-            data:{fileName: this.fileNames[0], fileData: this.pdfURL},
+            data:{fileName: this.fileNames[id], fileData: this.pdfURL},
             autoFocus: true
           });
         }

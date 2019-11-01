@@ -18,9 +18,6 @@ export interface FilePreviewData {
 })
 export class TrainingUploaderComponent implements OnInit {
 
-
-  displayedColumns: string[] = ['serialNum', 'fileName', 'actions'];
-
   showSpinner:boolean;
   pdfURL: string = "";
   files: any[] = [];
@@ -89,27 +86,23 @@ export class TrainingUploaderComponent implements OnInit {
       
     }
 
-    filePreview(index: number){
-      // this.notifyService.showSuccess(this.fileNames[index],"");
-      this.openDialog();  
-    }
     deleteAttachment(index) {
       this.files.splice(index, 1);
       this.fileNames.splice(index, 1);
       this.fileNameService.fileName = this.fileNames;
     }
 
-    openDialog()
+    filePreview(id: number)
         {
 
-          this.pdfURL = window.URL.createObjectURL(this.files[0]);
+          this.pdfURL = window.URL.createObjectURL(this.files[id]);
           
 
           this.dialog.open(FilePreViewComponent, {
             height: '98%',
             width: '88%',
             panelClass: 'full-screen-modal',
-            data:{fileName: this.fileNames[0], fileData: this.pdfURL},
+            data:{fileName: this.fileNames[id], fileData: this.pdfURL},
             autoFocus: true
           });
         }

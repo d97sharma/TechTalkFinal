@@ -199,7 +199,7 @@ color:black;}
   color: white;
 }
 
-#pageNav{
+#pageNav{ // Coloring the Page Number display 
   color: rgb(248, 247, 247)
 }
 
@@ -210,17 +210,18 @@ color:black;}
 
 .mat-pageNav {
   background-color: lightseagreen;
-  color: black;
+  color:  #fff;
 }
 
-.mat-next {
-  background-color: green;
-  color: #fff;
-}
 
 .mat-clearCropper{
   background-color: white;
   color: red;
+}
+
+.mat-train{
+  background-color: rgb(16, 184, 16);
+  color: white;
 }
 
 .mat-delete{
