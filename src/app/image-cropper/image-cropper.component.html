@@ -30,45 +30,54 @@
     </div>
 
     <div class="column right">
-        <br>
-        <div>
-            <mat-label>Template Name: </mat-label> &nbsp;
-            <input placeholder="Enter Template Name" [(ngModel)] = "imageDetails.ImageName"> &nbsp;
-            <button mat-mini-fab (click)="addtoImgList()" color="add">
-                    <mat-icon aria-hidden="false" aria-label="Example add icon" >add</mat-icon>        
-            </button>
-        </div>
-        <br>
-        <div>
-        <table class="files-table" *ngIf = "imageDetailsList.length > 0">
-                <tr>   
-                    <th>Zone Name</th>
-                    <th>Actions</th>
+        <mat-card>
+            <mat-card-header>
+                <mat-card-title>{{ vendorName }}</mat-card-title>
+                <mat-card-subtitle>Vendor</mat-card-subtitle>
+            </mat-card-header>
+            
+            <mat-card-content>
+                <div>
 
-                </tr>
-                <tr *ngFor = "let image of imageDetailsList; let i = index">
-                    <td>{{image.ImageName}}</td>
-                    <td>
-                        <button mat-flat-button color= "primary"(click)="imagePreview(image)">Preview Template</button>
-                        <button mat-icon-button  (click)="removeTemplate(i)" color="delete">
-                                <mat-icon aria-hidden="false" aria-label="Example forward icon" >
-                                    delete
-                                </mat-icon>        
-                        </button>
-                    </td>
-                </tr>
-        </table>
-        </div>
+                    <mat-label>Template Name: </mat-label> &nbsp;
+                    <input placeholder="Enter Template Name" [(ngModel)] = "imageDetails.ImageName"> &nbsp;
+                    <button mat-mini-fab (click)="addtoImgList()" color="add">
+                            <mat-icon aria-hidden="false" aria-label="Example add icon" >add</mat-icon>        
+                    </button>
+                </div>
+                <br>
+                <div>
+                <table class="files-table" *ngIf = "imageDetailsList.length > 0">
+                        <tr>   
+                            <th>Zone Name</th>
+                            <th>Actions</th>
 
-<br>
-        <div *ngIf="imageDetailsList.length > 0">
-            <button mat-raised-button color="train" (click)="uploadTemplates()">Train</button>
-            &nbsp;
-            &nbsp;
-            <button mat-raised-button color="warn" (click)="clearCroppedZones()">
-                Delete All
-            </button>
-        </div>
+                        </tr>
+                        <tr *ngFor = "let image of imageDetailsList; let i = index">
+                            <td>{{image.ImageName}}</td>
+                            <td>
+                                <button mat-flat-button color= "primary"(click)="imagePreview(image)">Preview Template</button>
+                                <button mat-icon-button  (click)="removeTemplate(i)" color="delete">
+                                        <mat-icon aria-hidden="false" aria-label="Example forward icon" >
+                                            delete
+                                        </mat-icon>        
+                                </button>
+                            </td>
+                        </tr>
+                </table>
+                </div>
+
+                <br>
+                <div *ngIf="imageDetailsList.length > 0">
+                    <button mat-raised-button color="train" (click)="uploadTemplates()">Train</button>
+                    &nbsp;
+                    &nbsp;
+                    <button mat-raised-button color="warn" (click)="clearCroppedZones()">
+                        Delete All
+                    </button>
+                </div>
+            </mat-card-content>
+        </mat-card>
     </div>
 </div> 
 

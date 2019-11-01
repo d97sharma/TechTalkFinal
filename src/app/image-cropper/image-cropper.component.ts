@@ -121,6 +121,7 @@ export class ImageCropperComponent implements OnInit, AfterViewInit {
         this.http.post<any>("http://localhost:2136/api/upload/images", this.formData).subscribe(
         (data: any) => { 
             this.notification.showSuccess("Trained successfully","Invoice Template Status:");
+            this.serveImages.markedb64Images = null;
       }
     ); 
          
