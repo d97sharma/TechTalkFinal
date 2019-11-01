@@ -1,38 +1,57 @@
 <div class="row"> 
   <div class="column right">
-    <div class="infoTable">
-      <h2>Extracted Information</h2>
-
-      <table class="files-table">
-        <tr>
-            <th>S.No.</th>
-            <th>Data Field</th> 
-            <th>Value</th>
-            
-            
-        </tr>
-        <tr *ngFor="let data of infoExtracted | keyvalue;let i=index">
-            <td>{{i+1}}</td>
-            <td>
-              <button mat-button color="primary" (click) = "applyFilter(data.key)">{{ data.key }}</button>
-            </td>
-            <td (click) = "applyFilter(data.key)">{{ data.value[0] }}</td>
-        </tr>
-      </table>
-    </div>
-    <button (click)="returnToList()">Done</button>
-
+    <mat-card>
+      <mat-card-header>
+        <mat-card-title>
+          {{ fileName }}
+        </mat-card-title>
+        <mat-card-subtitle>
+          Extracted Information
+        </mat-card-subtitle>
+      </mat-card-header>
+      <mat-card-content>
+        <table class="files-table">
+          <tr>
+              <th>S.No.</th>
+              <th>Data Field</th> 
+              <th>Value</th>
+              
+              
+          </tr>
+          <tr *ngFor="let data of infoExtracted | keyvalue;let i=index">
+              <td>{{i+1}}</td>
+              <td>
+                <button mat-button color="primary" (click) = "applyFilter(data.key)">{{ data.key }}</button>
+              </td>
+              <td (click) = "applyFilter(data.key)">{{ data.value[0] }}</td>
+          </tr>
+        </table>
+      </mat-card-content>
+      <mat-card-actions>
+        <button mat-button (click)="returnToList()">Done</button>
+      </mat-card-actions>
+  </mat-card>
   </div>
   <div class="column left">
-    <h5 *ngIf="filterApplied">
-      Filtered By: {{filterApplied}}
-      <button mat-flat-button color="reset" (click)="resetFilter()">Reset Filter</button>
-    </h5>
-    
-    <app-image-viewer [images]="imageSource"
-      [idContainer]="'idOnHTML'"
-      [loadOnInit]="true">
-    </app-image-viewer>
+    <mat-card>
+      <mat-card-header>
+        <mat-card-title>
+          Marked Image
+        </mat-card-title>
+        <mat-card-subtitle *ngIf="filterApplied">
+          Filtered By: {{filterApplied}}
+          <mat-card-action>
+              <button mat-flat-button color="reset" (click)="resetFilter()">Reset Filter</button>
+          </mat-card-action>
+        </mat-card-subtitle>
+      </mat-card-header>
+      <mat-card-content>
+          <app-image-viewer [images]="imageSource"
+          [idContainer]="'idOnHTML'"
+          [loadOnInit]="true">
+        </app-image-viewer>
+      </mat-card-content>
 
+    </mat-card>
   </div>
 </div>

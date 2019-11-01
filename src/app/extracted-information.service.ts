@@ -6,5 +6,6 @@ import { Injectable } from '@angular/core';
 export class ExtractedInformationService {
   extractedData:any;
   b64MarkedImages: string[];
+  fileName: string;
   constructor() { }
 }

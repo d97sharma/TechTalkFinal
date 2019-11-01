@@ -43,7 +43,8 @@ b64MarkedImg: any = null; // contains the recieved base64 images
     // IP (Home): 192.168.0.102
     this.http.post("http://192.168.0.102:5000/api/InfoExtractor  ",this.myJson).subscribe(
       (data: any) => {
-        this.extractedInformation.b64MarkedImages = data["MarkedImages"]
+        this.extractedInformation.fileName = data["FileName"];
+        this.extractedInformation.b64MarkedImages = data["MarkedImages"];
         this.extractedInformation.extractedData = data["Info"];      
         this.showFlag = false;                          
     }

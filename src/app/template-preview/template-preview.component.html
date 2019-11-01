@@ -1,4 +1,13 @@
-<div style="text-align: center">
+<!-- <div style="text-align: center">
      <h3>{{ imgName }}</h3>
     <img [src]="imgUrl">
-</div>
+</div> -->
+<mat-card>
+    <mat-card-header>
+        <mat-card-title>{{ imgName }}</mat-card-title>
+        <mat-card-subtitle>Template Preview</mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content>
+            <img [src]="imgUrl">
+    </mat-card-content>
+</mat-card>

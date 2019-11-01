@@ -29,13 +29,6 @@ color: white;}
     color: white;
   }
 
-h2{
-  color:  rgb(248, 247, 247);
-}
-
-h5{
-  color:  rgb(248, 247, 247);
-}
 
 img {
   height:80%;
@@ -50,16 +43,14 @@ img {
 }
 
 .left {
-  width: 55%;
+  width: 50%;
   
 }
 
 .right {
     
-  width: 45%;
-  background-color: #343a40;
-  color: white;
-  overflow: hidden;
+  width: 50%;
+
 }
 
 /* Clear floats after the columns */

@@ -23,7 +23,10 @@ export class InformationDialogComponent implements OnInit {
   filterApplied:string;
   imageSource:string[];
 
+  fileName:string;
+
   ngOnInit() {
+          this.fileName = this.extractedInformation.fileName;
           this.infoExtracted = this.extractedInformation.extractedData;
           this.b64MarkedImages = this.extractedInformation.b64MarkedImages;
           this.imageSource = this.b64MarkedImages;
