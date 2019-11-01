@@ -8,6 +8,7 @@ import { TemplateUrlService } from '../template-url.service';
 import { NotificationService } from '../notification.service';
 import { ServeB64imagesService } from '../serve-b64images.service';
 import { DomSanitizer } from '@angular/platform-browser';
+import { FileNameService } from '../file-name.service';
 
 @Component({
     selector: 'app-image-cropper',
@@ -31,6 +32,7 @@ export class ImageCropperComponent implements OnInit, AfterViewInit {
 
     pageURLs: any[] = [];
 
+    vendorName:string;
     formData = new FormData();
 
     imageDetails:ImageDetails;
@@ -42,7 +44,8 @@ export class ImageCropperComponent implements OnInit, AfterViewInit {
               private templateUrl:TemplateUrlService,
               private notification:NotificationService,
               private serveImages:ServeB64imagesService,
-              private _sanitizer: DomSanitizer
+              private _sanitizer: DomSanitizer,
+              private fileNameService: FileNameService
     ) {
         
     }
@@ -50,6 +53,7 @@ export class ImageCropperComponent implements OnInit, AfterViewInit {
     ngOnInit() { 
 
         this.sanitizeURLs( this.serveImages.markedb64Images);
+        this.vendorName = this.fileNameService.fileType;
         this.pageNumber = 0;
         this.imageDestination = "";
         this.imageDetails = {ImageName : "", ImageDataURL : "", ImgH:0, ImgW:0}
@@ -110,13 +114,13 @@ export class ImageCropperComponent implements OnInit, AfterViewInit {
             return;
           }
         
-        this.imageDetailsList.forEach(element => { this.convToJPG(element);
-            
-        });
-        //replace with "images"
+        // Conveying the type of input invoice 
+        this.formData.append("FileType",this.vendorName)
+        this.imageDetailsList.forEach(element => { this.convToJPG(element); });
+
         this.http.post<any>("http://localhost:2136/api/upload/images", this.formData).subscribe(
         (data: any) => { 
-            this.notification.showSuccess("Templates Uploaded Successfully","");
+            this.notification.showSuccess("Trained successfully","Invoice Template Status:");
       }
     ); 
          

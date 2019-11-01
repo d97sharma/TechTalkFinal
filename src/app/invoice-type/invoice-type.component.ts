@@ -30,17 +30,6 @@ export class InvoiceTypeComponent implements OnInit {
       {id: 1, name: "Wells Fargo"}
     ];
    
-/*
-   selected(event) {
-    let target = event.source.selected._element.nativeElement;
-    let selectedData = {
-      value: event.value,
-      text: target.innerText.trim()
-    };
-    console.log(selectedData);
-}
- */
- 
 
   ngOnInit() {
   }

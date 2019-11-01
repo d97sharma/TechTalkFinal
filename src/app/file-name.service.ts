@@ -5,6 +5,7 @@ import { FileData } from './extraction-module/pdf-uploader/pdf-uploader.componen
   providedIn: 'root'
 })
 export class FileNameService {
+
 fileCollection: FileData[]; 
 fileType: string;
   constructor() { }
