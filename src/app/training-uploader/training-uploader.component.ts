@@ -69,7 +69,7 @@ export class TrainingUploaderComponent implements OnInit {
             this.http.post("http://192.168.0.102:5000/api/GetTrainingImgs",this.myJson).subscribe(
               (data: any) => {
                 this.serveImages.markedb64Images = data["Base64Imgs"];
-                this.notifyService.showSuccess("File uploaded successfully", "Notification");
+                this.notifyService.showSuccess("Ready for Cropping", "Invoice Template Status:");
               }
             )
           });
