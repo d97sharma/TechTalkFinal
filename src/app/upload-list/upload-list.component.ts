@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FileNameService } from '../file-name.service';
 import { HttpClient } from '@angular/common/http';
 import { ExtractedInformationService } from '../extracted-information.service';
+import { FileData } from '../extraction-module/pdf-uploader/pdf-uploader.component';
 
 
 
@@ -14,7 +15,7 @@ import { ExtractedInformationService } from '../extracted-information.service';
 export class UploadListComponent implements OnInit {
 
 showFlag : boolean = false;
-fileList: string[]= null;
+fileList: FileData[]= null;
 myJson = {
   "FileName":"",
   "FileType":""
@@ -29,19 +30,15 @@ b64MarkedImg: any = null; // contains the recieved base64 images
               ){ }
   
   ngOnInit() {
-    this.fileList = this.fileNameService.fileName;
+    this.fileList = this.fileNameService.fileCollection;
     this.myJson = {
-      "FileName":this.fileList[0],
+      "FileName":this.fileList[0].fileName,
       "FileType":this.fileNameService.fileType
     }    
    this.fileNameService.fileName = undefined;
     // this.files = this.fileComponent.files;
   }
-  displayInfo(index: number) {
-    this.myJson = {
-      "FileName":this.fileList[index],
-      "FileType":this.fileNameService.fileType
-    }    
+  displayInfo() {   
     // change the IP when in office
     // IP (Office): 172.23.179.252 / 172.23.115.77
     // IP (Home): 192.168.0.102
@@ -57,11 +54,15 @@ b64MarkedImg: any = null; // contains the recieved base64 images
 
     convertToJpeg(index: number){
         this.showFlag = true;
+        this.myJson = {
+          "FileName":this.fileList[index].fileName,
+          "FileType":this.fileNameService.fileType
+        } 
         // IP (Office): 172.23.179.252 / 172.23.115.77
         // IP (Home): 192.168.0.102
         this.http.post("http://192.168.0.102:5000/api/ConvertPDFs",this.myJson).subscribe(
         (data: any) => {
-          this.displayInfo(index);
+          this.displayInfo();
       }
       );
                   

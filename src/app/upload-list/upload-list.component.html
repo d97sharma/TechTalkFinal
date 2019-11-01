@@ -12,9 +12,9 @@
             <th>Name of the Files</th> 
             <th>Options Available</th>
         </tr>
-        <tr *ngFor="let fileName of fileList;let i=index">
+        <tr *ngFor="let file of fileList;let i=index">
             <td>{{i+1}}</td>
-            <td >{{ fileName }}</td>
+            <td >{{ file.fileName }}</td>
             <td >
                   <button class="btn2" (click)="convertToJpeg(i)" >Extract Info</button>  &nbsp;&nbsp;
             </td>

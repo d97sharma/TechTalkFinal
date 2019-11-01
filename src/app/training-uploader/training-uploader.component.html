@@ -6,7 +6,7 @@
   <br/>
   <br/>
   <div class="uploadfilecontainer" (click)="fileInput.click()" appDragDrop (onFileDropped)="uploadFile($event)">
-      <input hidden type="file" #fileInput (change)="uploadFile($event.target.files)" multiple>
+      <input hidden type="file" #fileInput (change)="uploadFile($event.target.files)">
     </div>
 
     <div  class="files-list" *ngFor="let fileName of fileNames;let i=index">

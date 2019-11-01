@@ -23,35 +23,36 @@ export class PdfUploaderComponent implements OnInit {
 
   progress: number;
   status: UploadStatus;
-  files: any[] = [];
-  fileNames: string[]= [];
   pdfURL: string;
+
+  fileCollection: FileData[];
   
   @Output() hideStepper: EventEmitter<any> = new EventEmitter<any>();
 
-  constructor(private http: HttpClient,
+  constructor(
+    private http: HttpClient,
     private notifyService : NotificationService,
     private fileNameService: FileNameService,
     private dialog: MatDialog,
     private modalService: ModalService
-
     ) { }
 
   ngOnInit() {
+    this.fileCollection = [];
+
   }
   sendFiles (){ 
     
-    if (this.files.length === 0) {
+    if (this.fileCollection.length === 0) {
       return;
     }
    
     const formData = new FormData();
     
-    for (let file of this.files) {
-      formData.append("File", file);
+    for (let file of this.fileCollection) {
+      formData.append(file.fileName, file.fileData);
     }
 
-    // 172.23.179.252
     this.http.post<any>("http://localhost:2136/api/upload/files", formData).subscribe(
         () => { 
                   this.notifyService.showSuccess("File uploaded successfully", "Notification"); 
@@ -64,23 +65,20 @@ export class PdfUploaderComponent implements OnInit {
   uploadFile(event) {
     for (let index = 0; index < event.length; index++) {
       const element = event[index];
-      this.fileNames.push(element.name.split('.')[0]);
-      this.files.push(element);
-      //this.fileNameService.fileName.push(element.name);
+      this.fileCollection.push({fileName:element.name.split('.')[0],fileData:element})
     }  
-    this.fileNameService.fileName = this.fileNames;
+    this.fileNameService.fileCollection = this.fileCollection;
   }
   deleteAttachment(index) {
-    this.files.splice(index, 1);
-    this.fileNames.splice(index, 1);
-    this.fileNameService.fileName = this.fileNames;
+    this.fileCollection.splice(index,1)
+    this.fileNameService.fileCollection = this.fileCollection;
   }
   
 
   filePreview(id: number)
         {
 
-          this.pdfURL = window.URL.createObjectURL(this.files[id]);
+          this.pdfURL = window.URL.createObjectURL(this.fileCollection[id].fileData);
           // this.modalService.open(id);
 
 
@@ -88,7 +86,7 @@ export class PdfUploaderComponent implements OnInit {
             height: '98%',
             width: '88%',
             panelClass: 'full-screen-modal',
-            data:{fileName: this.fileNames[id], fileData: this.pdfURL},
+            data:{fileName: this.fileCollection[id].fileName, fileData: this.pdfURL},
             autoFocus: true
           });
         }
