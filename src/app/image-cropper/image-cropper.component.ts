@@ -36,7 +36,7 @@ export class ImageCropperComponent implements OnInit, AfterViewInit {
     formData = new FormData();
 
     imageDetails:ImageDetails;
-    imageDetailsList:ImageDetails[] = [];
+    imageDetailsList:ImageDetails[];
 
     public constructor(
               private http : HttpClient,
@@ -52,12 +52,14 @@ export class ImageCropperComponent implements OnInit, AfterViewInit {
 
     ngOnInit() { 
 
-        this.sanitizeURLs( this.serveImages.markedb64Images);
+        this.sanitizeURLs( this.serveImages.B64Images);
         this.vendorName = this.fileNameService.fileType;
         this.pageNumber = 0;
         this.imageDestination = "";
         this.imageDetails = {ImageName : "", ImageDataURL : "", ImgH:0, ImgW:0}
         this.imageSource = this.pageURLs[this.pageNumber];
+        this.initTemplateList();
+
 
     }
 
@@ -121,7 +123,7 @@ export class ImageCropperComponent implements OnInit, AfterViewInit {
         this.http.post<any>("http://localhost:2136/api/upload/images", this.formData).subscribe(
         (data: any) => { 
             this.notification.showSuccess("Trained successfully","Invoice Template Status:");
-            this.serveImages.markedb64Images = null;
+            this.serveImages.B64Images = null;
       }
     ); 
          
@@ -195,5 +197,17 @@ export class ImageCropperComponent implements OnInit, AfterViewInit {
         this.pageURLs.push(this._sanitizer.bypassSecurityTrustResourceUrl('data:image/jpg;base64,' 
         + element));
       });
+  }
+
+  initTemplateList(){
+    this.imageDetailsList = [];
+    const templateDict = this.serveImages.B64TemplateInfo
+    for(let key in templateDict){
+        const URL = this._sanitizer.bypassSecurityTrustResourceUrl('data:image/jpg;base64,' 
+        + templateDict[key]);
+        const entityName = key;
+        this.imageDetailsList.push({ImageName : entityName, ImageDataURL : URL, ImgH:100, ImgW:100});
+    }
+
   }
 }

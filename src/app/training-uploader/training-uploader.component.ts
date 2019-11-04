@@ -66,12 +66,19 @@ export class TrainingUploaderComponent implements OnInit {
             // change the IP when in office
             // Home IP: 192.168.0.102
             // Office IP: 172.23.179.252/ 172.23.115.77
-            this.http.post("http://172.23.179.252:5000/api/GetTrainingImgs",this.myJson).subscribe(
-              (data: any) => {
-                this.serveImages.markedb64Images = data["Base64Imgs"];
-                this.notifyService.showSuccess("Ready for Cropping", "Invoice Template Status:");
-              }
-            )
+            this.http.post("http://172.23.179.252:5000/api/GetTemplates",this.myJson).subscribe(
+                 (data: any) => {
+                  this.serveImages.B64TemplateInfo = data["Base64Templates"];
+                  this.http.post("http://172.23.179.252:5000/api/GetTrainingImgs",this.myJson).subscribe(
+                            (data: any) => {
+                              this.serveImages.B64Images = data["Base64Imgs"];
+                              this.notifyService.showSuccess("Ready for Cropping", "Invoice Template Status:");
+                            }
+                          );
+
+  }
+);
+
           });
         
      
@@ -109,3 +116,6 @@ export class TrainingUploaderComponent implements OnInit {
         }
 
 }
+
+
+
