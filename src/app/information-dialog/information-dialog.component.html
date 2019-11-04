@@ -41,7 +41,9 @@
         <mat-card-subtitle *ngIf="filterApplied">
           Filtered By: {{filterApplied}}
           <mat-card-action>
-              <button mat-flat-button color="reset" (click)="resetFilter()">Reset Filter</button>
+              <button mat-icon-button color="warn" (click)="resetFilter()">
+                <mat-icon>sync</mat-icon>
+              </button>
           </mat-card-action>
         </mat-card-subtitle>
       </mat-card-header>
