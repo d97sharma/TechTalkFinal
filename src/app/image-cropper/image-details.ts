@@ -1,6 +1,6 @@
 export class ImageDetails {
     ImageName: string;
-    ImageDataURL: any;
+    ImageDataURL: string;
     ImgH: number;
     ImgW: number;
 }

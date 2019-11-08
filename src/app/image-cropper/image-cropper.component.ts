@@ -203,8 +203,6 @@ export class ImageCropperComponent implements OnInit, AfterViewInit {
     this.imageDetailsList = [];
     const templateDict = this.serveImages.B64TemplateInfo
     for(let key in templateDict){
-        // const URL = this._sanitizer.bypassSecurityTrustResourceUrl('data:image/jpg;base64,' 
-        // + templateDict[key]);
         const URL = 'data:image/jpg;base64,' + templateDict[key];
         const entityName = key;
         this.imageDetailsList.push({ImageName : entityName, ImageDataURL : URL, ImgH:100, ImgW:100});
