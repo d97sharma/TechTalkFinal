@@ -39,8 +39,8 @@
             <mat-card-content>
                 <div>
 
-                    <mat-label>Template Name: </mat-label> &nbsp;
-                    <input placeholder="Enter Template Name" [(ngModel)] = "imageDetails.ImageName"> &nbsp;
+                    <mat-label>Entity Name: </mat-label> &nbsp;
+                    <input placeholder="Enter Entity Name" [(ngModel)] = "imageDetails.ImageName"> &nbsp;
                     <button mat-mini-fab (click)="addtoImgList()" color="add">
                             <mat-icon aria-hidden="false" aria-label="Example add icon" >add</mat-icon>        
                     </button>
@@ -49,14 +49,14 @@
                 <div>
                 <table class="files-table" *ngIf = "imageDetailsList.length > 0">
                         <tr>   
-                            <th>Zone Name</th>
+                            <th>Entity Name</th>
                             <th>Actions</th>
 
                         </tr>
                         <tr *ngFor = "let image of imageDetailsList; let i = index">
                             <td>{{image.ImageName}}</td>
                             <td>
-                                <button mat-flat-button color= "primary"(click)="imagePreview(image)">Preview Template</button>
+                                <button mat-flat-button color= "primary"(click)="imagePreview(image)">Preview Entity</button>
                                 <button mat-icon-button  (click)="removeTemplate(i)" color="delete">
                                         <mat-icon aria-hidden="false" aria-label="Example forward icon" >
                                             delete
