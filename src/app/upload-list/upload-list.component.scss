@@ -16,6 +16,28 @@ h2
   font-family: Lato;
 }
 
+.matButton{
+  // font-family: 'Open Sans', 'Helvetica Neue', sans-serif;
+  // font-size: 14px;
+  // font-weight: bold;
+  background-color: #70C989;
+}
+
+.matButton:hover {
+  opacity: 0.9;
+}
+
+.matButton2{
+  // font-family: 'Open Sans', 'Helvetica Neue', sans-serif;
+  // font-size: 14px;
+  // font-weight: bold;
+  background-color: rgb(66, 136, 253);
+}
+
+.matButton:hover {
+  opacity: 0.9;
+}
+
 
 
 
@@ -61,7 +83,7 @@ h2
   .btn2:hover
 {
 background-image:none;
-background-color:lightseagreen;
+background-color:#70C989;
 color: white;
 }
 
@@ -108,30 +130,35 @@ background-color:red;
 
 //---------------------------------------------------
 
-  .files-table {
-    font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
-    border-collapse: collapse;
-    width: 100%;
-    text-align: center;
-  }
-  
-  .files-table td, tr {
-    border: 1px solid #ddd;
-    padding: 8px;
-  }
-  
-  .files-table tr:nth-child(even){background-color: #f2f2f2;}
-  
-  .files-table tr:hover {background-color: #ddd;}
-  
-  .files-table th {
-    padding-top: 12px;
-    padding-bottom: 12px;
-    text-align: center;
-    background-color: black;
-    // background-color:    #4CAF50;
-    color: white;
-  }
+.files-table {
+  font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+  text-align: center;
+}
+
+.files-table td, tr {
+  // border: 1px solid #ddd;
+  padding: 8px;
+}
+
+.files-table tr:nth-child(even){background-color: #f2f2f2;
+color:black;}
+
+.files-table tr:nth-child(odd){background-color: white;
+  color:black;}
+
+.files-table tr:hover {background-color:#ddd;}
+
+
+.files-table th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: center;
+  background-color: #20272D;
+  // background-color:    #4CAF50;
+  color: white;
+}
 
 .spinner{
   margin: 0;
@@ -152,3 +179,4 @@ h3{
 h2{
   color: rgb(248, 247, 247)
 }
+

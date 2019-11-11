@@ -29,7 +29,7 @@ export class ImageCropperComponent implements OnInit, AfterViewInit {
     public imageDestination: string;
     public base64: string;
     private cropper: Cropper;
-
+    public regEx:any="/^[A-Z]+$/i";
     pageURLs: any[] = [];
 
     vendorName:string;
@@ -67,6 +67,7 @@ export class ImageCropperComponent implements OnInit, AfterViewInit {
         
     }
 
+
     renderCropper(){ 
         this.cropper = new Cropper(this.imageElement.nativeElement, {
           zoomable: true,
@@ -102,6 +103,10 @@ export class ImageCropperComponent implements OnInit, AfterViewInit {
     }
 
     addtoImgList(){
+        if(!this.regEx.test(this.imageDetails.ImageName))
+        {
+          return;
+        }
         this.imageDetails.ImageDataURL = this.imageDestination;
         this.imageDetails.ImgH = this.imgHeight;
         this.imageDetails.ImgW = this.imgWidth;

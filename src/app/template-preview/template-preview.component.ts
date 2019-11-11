@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { TemplateUrlService } from '../template-url.service';
+import { MatDialogRef } from '@angular/material';
 
 @Component({
   selector: 'app-template-preview',
@@ -9,7 +10,8 @@ import { TemplateUrlService } from '../template-url.service';
 export class TemplatePreviewComponent implements OnInit {
 
   constructor(
-            private templateServiceObj:TemplateUrlService
+            private templateServiceObj:TemplateUrlService,
+            public dialogRef: MatDialogRef<TemplatePreviewComponent>
   ) { }
   public imgUrl:string;
   public imgName:string;
@@ -17,6 +19,11 @@ export class TemplatePreviewComponent implements OnInit {
     this.imgUrl = this.templateServiceObj.templateDetails.ImageDataURL;
     this.imgName = this.templateServiceObj.templateDetails.ImageName;
 
+  }
+
+  close() {
+    //window.URL.revokeObjectURL(this.data.fileData);
+    this.dialogRef.close();
   }
 
 }

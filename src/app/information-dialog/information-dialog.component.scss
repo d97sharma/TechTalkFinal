@@ -1,34 +1,33 @@
 .files-table {
-    font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
-    border-collapse: collapse;
-    width: 100%;
-    text-align: center;
-  } 
-  
-  .files-table td, tr {
-    border: 1px solid #ddd;
-    padding: 8px;
-  }
-  
-  .files-table tr:nth-child(even){background-color: whitesmoke;
+  font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+  text-align: center;
+}
+
+.files-table td, tr {
+  // border: 1px solid #ddd;
+  padding: 8px;
+}
+
+.files-table tr:nth-child(even){background-color: #f2f2f2;
 color:black;}
-  
+
 .files-table tr:nth-child(odd){background-color: white;
-    color:black;}
+  color:black;}
+
+.files-table tr:hover {background-color:#ddd;}
 
 
-  .files-table tr:hover {background-color:lightsteelblue;
-color: white;}
-  
-  .files-table th {
-    padding-top: 12px;
-    padding-bottom: 12px;
-    text-align: center;
-    background-color: black;
-    // background-color:    #4CAF50;
-    color: white;
-  }
-
+.files-table th {
+  padding: 8px;
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: center;
+  background-color: #20272D;
+  // background-color:    #4CAF50;
+  color: white;
+}
 
 img {
   height:80%;
@@ -63,4 +62,18 @@ img {
 .mat-reset{
   background-color: white;
   color: red;
+}
+
+.matButton{
+  // font-family: 'Open Sans', 'Helvetica Neue', sans-serif;
+  // font-size: 14px;
+  // font-weight: bold;
+  background-color: #70C989;
+  // left: 460px;
+  left: 230px;
+  bottom: 10px;
+}
+
+.matButton:hover {
+  opacity: 0.9;
 }

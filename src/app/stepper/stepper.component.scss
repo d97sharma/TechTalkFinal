@@ -39,11 +39,20 @@
   }
 
 .mat-next {
-  background-color: green;
+  background-color: #70C989;
   color: #fff;
 }
 
 .mat-previous {
-  background-color: rgb(187, 126, 13);
+  background-color: #70C989;
   color: #fff;
+}
+
+
+::ng-deep .mat-step-header .mat-step-icon-selected {
+  background-color: #70C989; 
+}
+
+::ng-deep .mat-step-header .mat-step-icon {
+  background-color: #70C989; 
 }

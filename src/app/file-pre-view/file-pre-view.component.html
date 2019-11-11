@@ -1,5 +1,5 @@
 <h2 mat-dialog-title>{{ data.fileName }}</h2>
-
+<mat-card>
 <mat-dialog-content>
 
     <ngx-extended-pdf-viewer [src]="data.fileData" useBrowserLocale="true" height="800px">
@@ -8,5 +8,6 @@
 </mat-dialog-content>
 
 <mat-dialog-actions>
-    <button class="mat-raised-button" (click)="close()">Close</button>
+    <button class="matButton" mat-raised-button (click)="close()">Close</button>
 </mat-dialog-actions>
+</mat-card>
